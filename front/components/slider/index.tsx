@@ -18,7 +18,6 @@ export default function Slider({ images }: IProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const slideTo = (index: number) => {
     if (!swiper) return
-    console.log(swiper.activeIndex)
     swiper.slideTo(index)
   }
 

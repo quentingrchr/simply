@@ -4,9 +4,14 @@ import Head from 'next/head'
 import { useForm, FormProvider } from 'react-hook-form'
 import Image from 'next/image'
 import s from './styles.module.scss'
+import {
+  getBaseApiUrl,
+  convertStrapiJeweleryToJewelry,
+  extractAttr,
+} from '@utils/index'
 import { IJewelryProduct } from '@interfaces/index'
 
-const data: Array<IJewelryProduct> = [
+const fakeProducts: Array<IJewelryProduct> = [
   {
     id: '1',
     primaryImg: {
@@ -147,7 +152,12 @@ const data: Array<IJewelryProduct> = [
   },
 ]
 
-const Shop: NextPage = () => {
+interface IProps {
+  products: Array<IJewelryProduct>
+  topText?: string
+}
+
+const Shop: NextPage<IProps> = ({ products, topText }) => {
   const methods = useForm()
 
   return (
@@ -161,19 +171,40 @@ const Shop: NextPage = () => {
             <Text color="black" type="h-uppercase">
               Shop All
             </Text>
-            <Text color="black" type="paragraph">
-              I'm a paragraph. Click here to add your own text and edit me. It’s
-              easy. Just click “Edit Text” or double click me to add your own
-              content and make changes to the font.
-            </Text>
+            {!!topText && (
+              <Text color="black" type="paragraph">
+                {topText}
+              </Text>
+            )}
           </div>
         </div>
         {/* <FormProvider {...methods}> */}
-        <ProductsList products={data} />
+        <ProductsList products={products} />
         {/* </FormProvider> */}
       </PageLayout>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const jewelriesRes = await fetch(`${getBaseApiUrl()}/jewelries?populate=*`)
+  const jewelriesData = await jewelriesRes.json()
+  const products = jewelriesData.data.map((apiItem: any): IJewelryProduct => {
+    return convertStrapiJeweleryToJewelry(apiItem)
+  })
+
+  const topTextRes = await fetch(`${getBaseApiUrl()}/shop-page`)
+  const topTextData = await topTextRes.json()
+  const topText = extractAttr(topTextData).topText
+
+  // Pass data to the page via props
+  return {
+    props: {
+      products,
+      topText,
+    },
+  }
 }
 
 export default Shop

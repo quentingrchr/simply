@@ -17,7 +17,7 @@ function jeweleryToCartItem(
     price: product.price,
     currency: product.currency,
     color,
-    collection: product.meta.collection,
+    collection: product.collection,
   }
 }
 export default function productToCartItem(

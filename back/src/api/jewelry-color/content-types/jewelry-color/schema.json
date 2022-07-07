@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jewelry_colors",
+  "info": {
+    "singularName": "jewelry-color",
+    "pluralName": "jewelry-colors",
+    "displayName": "Jewelry Color",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "jewelries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::jewelry.jewelry",
+      "mappedBy": "colors"
+    }
+  }
+}

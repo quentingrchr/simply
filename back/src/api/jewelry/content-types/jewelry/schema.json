@@ -51,6 +51,18 @@
         "videos",
         "audios"
       ]
+    },
+    "collection": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::jewelry-collection.jewelry-collection",
+      "inversedBy": "jewelries"
+    },
+    "colors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::jewelry-color.jewelry-color",
+      "inversedBy": "jewelries"
     }
   }
 }

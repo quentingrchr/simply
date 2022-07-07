@@ -40,14 +40,14 @@ export function getArrayOfPropertiesFromProduct(
   products.forEach((products) => {
     if (properties.collection) {
       // populate collections
-      if (collections.indexOf(products.meta.collection) === -1) {
-        collections.push(products.meta.collection)
+      if (collections.indexOf(products.collection) === -1) {
+        collections.push(products.collection)
       }
     }
     if (properties.color) {
       // populate colors
-      if (products.meta.colors) {
-        products.meta.colors.forEach((color) => {
+      if (products.colors) {
+        products.colors.forEach((color) => {
           if (colors.indexOf(color) === -1) {
             colors.push(color)
           }
@@ -85,7 +85,7 @@ export function filterProducts(
 
   if (filters.color !== undefined) {
     newProducts = newProducts.filter((product) =>
-      product.meta.colors.includes(filters.color as JewelryColorType)
+      product.colors.includes(filters.color as JewelryColorType)
     )
   }
 

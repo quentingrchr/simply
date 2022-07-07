@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_react_component_link_buttons",
+  "info": {
+    "displayName": "Link Button",
+    "icon": "link",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "to": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string",
+      "default": "_blank"
+    }
+  }
+}

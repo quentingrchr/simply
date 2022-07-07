@@ -31,8 +31,6 @@ export default function InputNumber({
     defaultValue: defaultValue,
   })
 
-  console.log({ control, value, onChange })
-
   function increase() {
     if (parseInt(value) < max - 1) onChange(parseInt(value) + 1)
   }

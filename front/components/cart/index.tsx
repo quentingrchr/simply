@@ -16,8 +16,6 @@ const data: Array<ICartItem> = []
 export default function Cart({ variant = 'simple', items = data }: IProps) {
   const methods = useForm()
 
-  console.log({ methods })
-  console.log({ form: methods.watch() })
   return (
     <FormProvider {...methods}>
       <div className={s.list}>

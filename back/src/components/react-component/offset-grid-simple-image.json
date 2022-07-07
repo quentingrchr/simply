@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_react_component_offset_grid_simple_images",
+  "info": {
+    "displayName": "Simple Image",
+    "icon": "image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

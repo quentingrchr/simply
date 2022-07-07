@@ -4,7 +4,8 @@
   "info": {
     "singularName": "home-hero",
     "pluralName": "home-heroes",
-    "displayName": "Home Hero"
+    "displayName": "Home Hero",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,14 @@
   "attributes": {
     "Title": {
       "type": "string"
+    },
+    "offsetgrid": {
+      "type": "dynamiczone",
+      "components": [
+        "react-component.small-section",
+        "react-component.parallax-image",
+        "react-component.offset-grid-simple-image"
+      ]
     }
   }
 }

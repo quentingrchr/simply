@@ -32,14 +32,13 @@ const colorsTextMap: {
 export default function Product({ product }: IProps) {
   const methods = useForm({
     defaultValues: {
-      ['color' as string]: product.meta.colors[0] as JewelryColorType,
+      ['color' as string]: product.colors[0] as JewelryColorType,
       ['quantity' as string]: 1,
     },
   })
   const { watch, register, handleSubmit } = methods
 
   let images = [product.primaryImg]
-  console.log(images)
   if (product.secondaryImg) {
     images.push(product.secondaryImg)
   }
@@ -53,13 +52,15 @@ export default function Product({ product }: IProps) {
         <section className={s.right}>
           <div className={s.id}>SKU: 0019</div>
           <h1 className={s.title}>I'm a product</h1>
-          <div className={s.price}>$180.00</div>
+          <div className={s.price}>
+            {getPriceFromCurrency(product.price, product.currency)}
+          </div>
           <div className={s.meta}>
             <div className={s.metaFieldset}>
               <div className={s.metaLabel}>
                 Color: {colorsTextMap[watch('color') as JewelryColorType]}
               </div>
-              <InputColor colors={product.meta.colors} name={'color'} />
+              <InputColor colors={product.colors} name={'color'} />
             </div>
             <div className={s.metaFieldset}>
               <div className={s.metaLabel}>Quantity</div>

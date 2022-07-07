@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_meta_meta_pages",
+  "info": {
+    "displayName": "Meta Page",
+    "icon": "audio-description"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    }
+  }
+}

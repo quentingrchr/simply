@@ -11,4 +11,7 @@ export default interface IProduct {
   currency: CurrencyType
   description: string
   details: string
+  createdAt?: string
+  updatedAt?: string
+  publishedAt?: string
 }

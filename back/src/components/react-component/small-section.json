@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_react_component_small_sections",
+  "info": {
+    "displayName": "Small Section",
+    "icon": "code",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "primaryLight",
+        "secondary",
+        "tertiary"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "react-component.link-button"
+    }
+  }
+}
