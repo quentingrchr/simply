@@ -1,0 +1,63 @@
+@import '@styles/theme.scss';
+
+// Your style here
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100%;
+  --choice-size: 2.4rem;
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.choices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.choice {
+  height: var(--choice-size);
+  width: var(--choice-size);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  &.active {
+    border: 1px solid black;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    width: calc(var(--choice-size) - 0.4rem);
+    height: calc(var(--choice-size) - 0.4rem);
+    border-radius: 50%;
+  }
+
+  &.gold {
+    &:after {
+      background-color: $color-product-gold;
+    }
+  }
+
+  &.silver {
+    &:after {
+      background-color: $color-product-silver;
+    }
+  }
+}

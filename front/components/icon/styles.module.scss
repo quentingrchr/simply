@@ -1,0 +1,17 @@
+@import '@styles/theme.scss';
+@include color-map;
+@include fill-map;
+
+// Your style here
+.iconContainer {
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inline {
+  display: inline;
+}

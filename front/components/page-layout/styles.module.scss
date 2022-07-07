@@ -1,0 +1,13 @@
+@import '@styles/theme.scss';
+
+// Your style here
+
+.noHeroLayout {
+  margin-top: var(--nav-height);
+  padding-top: 5rem;
+}
+
+.noScroll {
+  overflow: hidden;
+  height: 100vh;
+}

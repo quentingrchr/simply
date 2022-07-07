@@ -1,0 +1,88 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "img": {
+        "src": "/product-verso.webp",
+        "alt": "alt text"
+      },
+      "type": "jewelry",
+      "title": "Product 1",
+      "price": 180.0,
+      "currency": "$",
+      "quantity": 3,
+      "color": "gold",
+      "collection": "ERA Collection"
+    },
+    {
+      "id": "2",
+      "img": {
+        "src": "/product-verso.webp",
+        "alt": "alt text"
+      },
+      "type": "jewelry",
+      "title": "Product 2",
+      "price": 180.0,
+      "currency": "$",
+      "quantity": 3,
+      "color": "silver",
+      "collection": "CRATER Collection"
+    },
+    {
+      "id": "3",
+      "img": {
+        "src": "/product-verso.webp",
+        "alt": "alt text"
+      },
+      "type": "jewelry",
+      "title": "Product 3",
+      "price": 180.0,
+      "currency": "$",
+      "quantity": 3,
+      "color": "gold",
+      "collection": "ARC Collection"
+    },
+    {
+      "id": "4",
+      "img": {
+        "src": "/product-verso.webp",
+        "alt": "alt text"
+      },
+      "type": "jewelry",
+      "title": "Product 4",
+      "price": 180.0,
+      "currency": "$",
+      "quantity": 3,
+      "color": "silver",
+      "collection": "Sale"
+    },
+    {
+      "id": "5",
+      "img": {
+        "src": "/product-verso.webp",
+        "alt": "alt text"
+      },
+      "type": "jewelry",
+      "title": "Product 5",
+      "price": 180.0,
+      "currency": "$",
+      "quantity": 3,
+      "color": "gold",
+      "collection": "ARC Collection"
+    },
+    {
+      "id": "6",
+      "img": {
+        "src": "/product-verso.webp",
+        "alt": "alt text"
+      },
+      "type": "jewelry",
+      "title": "Product 5",
+      "price": 180.0,
+      "currency": "$",
+      "quantity": 3,
+      "color": "gold",
+      "collection": "Sale"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+@import '@styles/theme.scss';
+
+.grid {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  --offset: 20vh;
+  position: relative;
+  z-index: 10;
+  @include respond-below(sm) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.item {
+  width: 50vw;
+  height: 100vh;
+  background-color: $color-primary-light;
+  @include respond-below(sm) {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    min-height: 60rem;
+  }
+  @include respond-above(md) {
+    &:nth-child(odd) {
+      transform: translateY(calc(var(--offset) * -1));
+    }
+  }
+}
+
+.lastItem {
+  min-height: var(--offset);
+  transform: translateY(calc(var(--offset) * -1));
+  margin-bottom: calc(var(--offset) * -1);
+  @include respond-below(sm) {
+    min-height: unset;
+    margin-bottom: 0;
+    transform: none;
+  }
+}
+
+.smallSection {
+  display: flex;
+  text-align: center;
+  max-width: none;
+  width: 100%;
+  @include respond-below(sm) {
+    min-height: unset;
+    height: 100%;
+    padding: 0 10%;
+  }
+}

@@ -1,0 +1,21 @@
+@import '@styles/theme.scss';
+
+// Your style here
+
+.h1 {
+  @include typo-h1;
+}
+
+.h2 {
+  @include typo-h2;
+}
+
+.h-uppercase {
+  @include typo-h-uppercase;
+}
+
+.paragraph {
+  @include typo-paragraph;
+}
+
+@include color-map;

@@ -1,0 +1,112 @@
+@mixin typo-h1 {
+  font-family: $font-rozha-one;
+  font-size: 5rem;
+  text-align: center;
+}
+
+@mixin typo-h2 {
+  font-family: $font-caudex;
+  font-size: 5rem;
+}
+
+@mixin typo-h-uppercase {
+  font-family: $font-avenir;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+@mixin typo-paragraph {
+  font-family: $font-avenir;
+  font-size: 1.6rem;
+  line-height: 1.8em;
+}
+
+@mixin color-map {
+  .black {
+    color: $color-black;
+  }
+
+  .white {
+    color: $color-white;
+  }
+
+  .primary-dark {
+    color: $color-primary-dark;
+  }
+
+  .primary-light {
+    color: $color-primary-light;
+  }
+
+  .secondary {
+    color: $color-secondary;
+  }
+
+  .tertiary {
+    color: $color-tertiary;
+  }
+}
+
+@mixin fill-map {
+  .black {
+    fill: $color-black;
+  }
+
+  .white {
+    fill: $color-white;
+  }
+
+  .primary-dark {
+    fill: $color-primary-dark;
+  }
+
+  .primary-light {
+    fill: $color-primary-light;
+  }
+
+  .secondary {
+    fill: $color-secondary;
+  }
+
+  .tertiary {
+    fill: $color-tertiary;
+  }
+}
+
+// Respond above.
+@mixin respond-above($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}

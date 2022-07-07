@@ -1,0 +1,143 @@
+@import '@styles/theme.scss';
+
+.nav {
+  position: absolute;
+  top: 0;
+  z-index: 90;
+  width: 100vw;
+  --color-nav: #{$color-white};
+  --color-contrast: #{$color-black};
+  color: var(--color-nav);
+  &.noBg {
+    --color-nav: #{$color-black};
+    --color-contrast: #{$color-primary-light};
+  }
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.navWrapper {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 5%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem auto;
+  .navList {
+    @include respond-below(sm) {
+      display: none;
+    }
+  }
+}
+
+.navItem {
+  padding: 1rem 0;
+  color: var(--color-nav);
+  font-size: 1.6rem;
+  font-family: $font-avenir;
+  font-weight: 200;
+  line-height: 1.5em;
+  a {
+    color: var(--color-nav);
+    text-decoration: none;
+  }
+  &.active {
+    a {
+      color: var(--color-contrast) !important;
+    }
+  }
+}
+
+.navLink {
+}
+
+.navLeft {
+  flex: 1;
+  @include respond-below(sm) {
+    display: flex;
+    align-items: center;
+  }
+}
+.navRight {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 4rem;
+  flex: 1;
+}
+
+.navCenter {
+  flex: 1;
+  @include respond-below(sm) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.cartQuantity {
+  @include respond-below(sm) {
+    display: none;
+  }
+}
+
+.burgerIcon {
+  @include respond-above(sm) {
+    display: none;
+  }
+  z-index: 501;
+  position: relative;
+  --color: #{$color-white};
+}
+
+.burgerMenu {
+  list-style: none;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-tertiary;
+  z-index: 500;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  pointer-events: none;
+  transition: clip-path 0.5s ease-in-out;
+  &.open {
+    pointer-events: all;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+
+    .navItem {
+      opacity: 1;
+    }
+  }
+
+  .burgerMenuHeader {
+    height: 5rem;
+  }
+
+  .burgerMenuList {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .navItem {
+    --color-nav: #{$color-black};
+    --color-contrast: #{$color-primary-light};
+    font-size: 3.6rem;
+    font-family: $font-caudex;
+    width: fit-content;
+    text-align: center;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.5s 0.5s ease-in-out;
+  }
+}

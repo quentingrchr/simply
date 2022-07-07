@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_meta_meta_jewleries",
+  "info": {
+    "displayName": "Meta Jewlery",
+    "icon": "asterisk"
+  },
+  "options": {},
+  "attributes": {
+    "Color": {
+      "type": "enumeration",
+      "enum": [
+        "gold",
+        "silver"
+      ]
+    }
+  }
+}

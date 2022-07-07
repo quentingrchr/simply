@@ -1,0 +1,19 @@
+@import "@styles/theme.scss";
+
+
+.imgContainer{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.img{
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: calc(((var(--top) - var(--scroll, 0)) / var(--screen-h)) * -50%);
+  will-change: top;
+}

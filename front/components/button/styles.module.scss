@@ -1,0 +1,88 @@
+
+@import "@styles/theme.scss";
+
+
+.button{
+  outline: none;
+  border: none;
+  color: var(--btn-color);
+  font-family: $font-helvetica;
+  background: var(--btn-background);
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  transition: .3s ease all;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 200;
+  position: relative;
+  overflow: hidden;
+
+  a {
+    display: block;
+    text-decoration: none;
+  }
+
+  .label{
+    margin: 1rem 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .bg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--btn-hover-background-color);
+    transform: scaleX(0);
+    transition: transform .3s ease;
+    transform-origin: left;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+  }
+  
+  &:hover{
+    .bg{
+      transform: scaleX(1.2);
+    }
+  }
+}
+
+.primary {
+  --btn-color: #{$color-white};
+  --btn-background: #{$color-primary-dark};
+  --btn-hover-background-color: #{$color-primary-light};
+  border: 1px solid $color-white;
+}
+
+.primaryLight {
+  --btn-color: #{$color-white};
+  --btn-background: #{$color-primary-light};
+  --btn-hover-background-color: #{$color-primary-dark};
+  border: 1px solid $color-white;
+
+}
+
+.secondary{
+  --btn-color: #{$color-black};
+  --btn-background: #{$color-secondary};
+  --btn-hover-background-color: #{$color-white};
+  border: 1px solid $color-black; 
+}
+
+.white{
+  --btn-color: #{$color-black};
+  --btn-background: #{$color-white};
+  --btn-hover-background-color: #{$color-white};
+  border: 1px solid $color-black; 
+}
+
+.fullWidth{
+  width: 100%;
+}
+
+.upperCase{
+  text-transform: uppercase;
+}

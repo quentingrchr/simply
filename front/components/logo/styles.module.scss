@@ -1,0 +1,8 @@
+@import '@styles/theme.scss';
+
+.logo {
+  @include typo-h1;
+  @include respond-below(sm) {
+    font-size: 2.4rem;
+  }
+}

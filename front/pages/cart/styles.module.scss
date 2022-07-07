@@ -1,0 +1,58 @@
+@import '@styles/theme.scss';
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 0 calc((100vw - 90%) / 2);
+  max-width: 100vw;
+  box-sizing: border-box;
+  font-family: $font-avenir;
+  color: $color-black;
+  --padding-y-cart-item: 3rem;
+}
+.cartContainer {
+  flex: 3.5;
+}
+.cartHeader {
+}
+.headerTitle {
+  font-size: 2rem;
+  font-family: $font-avenir;
+  color: $color-black;
+  border-bottom: $thin-border;
+  padding: 2rem 0;
+}
+.cartFooter {
+}
+
+.cartFooterLink {
+}
+
+.orderContainer {
+  flex: 1;
+}
+
+.orderItem {
+  font-size: 1.6rem;
+  line-height: 1.8em;
+  font-family: $font-avenir;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding-y-cart-item) 0;
+}
+
+.orderFooter {
+  border-top: $thin-border;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--padding-y-cart-item) * 1.2);
+}
+
+.orderTotal {
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+}

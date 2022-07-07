@@ -1,0 +1,53 @@
+@import "@styles/theme.scss";
+
+@keyframes layer-sliding{
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  100% {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); 
+  }
+}
+
+.heroLayer1 {
+  z-index: 3;
+  animation: layer-sliding 1.2s forwards ease;
+}
+
+.heroLayer{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.heroLayer2{
+  z-index: 2;
+  animation: layer-sliding .8s .8s forwards ease;
+}
+
+.primary-light{
+  background-color: $color-primary-light;
+}
+
+.primary-dark{
+  background-color: $color-primary-dark;
+}
+
+.secondary{
+  background-color: $color-secondary;
+}
+
+.tertiary{
+  background-color: $color-tertiary;
+}
+
+.black{
+  background-color: $color-black;
+}
+
+.white{
+  background-color: $color-white;
+}

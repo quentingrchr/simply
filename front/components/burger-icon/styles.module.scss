@@ -1,0 +1,59 @@
+@import '@styles/theme.scss';
+
+// Your style here
+
+.burgerIcon {
+  position: relative;
+  --line-thickness: 3px;
+  --animation-duration: 0.4s;
+  --burger-size: 2rem;
+  width: calc(var(--burger-size) * 1.4);
+  height: var(--burger-size);
+
+  &.open {
+    .burgerIconLine {
+      background-color: $color-black;
+      &:nth-child(1) {
+        transform: translateY(calc(var(--burger-size) / 2)) rotate(45deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:nth-child(3) {
+        transform: translateY(calc(var(--burger-size) / 2)) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.burgerIconLine {
+  height: var(--line-thickness);
+  width: 100%;
+  background-color: var(--color-nav, --color, #{$color-black});
+  position: absolute;
+  border-radius: 50px;
+  transform-origin: center;
+  top: 0;
+
+  transition: top calc(var(--animation-duration) * 0.6)
+      calc(var(--animation-duration) * 0.4) ease-in-out,
+    opacity calc(var(--animation-duration) * 0.4)
+      calc(var(--animation-duration) * 0.4) ease-in-out,
+    transform calc(var(--animation-duration) * 0.6)
+      calc(var(--animation-duration) * 0.4) ease-in-out,
+    background-color calc(var(--animation-duration) * 0.6)
+      calc(var(--animation-duration) * 0.4) ease-in-out;
+
+  &:nth-child(1) {
+    transform: translateY(0) rotate(0);
+  }
+  &:nth-child(2) {
+    transform: translateY(
+        calc(calc((var(--burger-size) / 2) + 1px) - (var(--line-thickness) / 2))
+      )
+      rotate(0deg);
+  }
+  &:nth-child(3) {
+    transform: translateY(var(--burger-size)) rotate(0);
+  }
+}

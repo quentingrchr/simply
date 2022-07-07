@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jewelries",
+  "info": {
+    "singularName": "jewelry",
+    "pluralName": "jewelries",
+    "displayName": "Jewelry",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "$"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "details": {
+      "type": "text"
+    },
+    "primaryImg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "secondaryImg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

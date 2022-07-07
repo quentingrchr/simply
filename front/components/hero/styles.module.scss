@@ -1,0 +1,75 @@
+@import '@styles/theme.scss';
+
+@keyframes fade-up {
+  0% {
+    transform: translateY(-4rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.heroContainer {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  @media screen and (max-width: 992px) {
+    height: 50vh;
+  }
+  @media screen and (max-width: 768px) {
+    height: 100vh;
+  }
+}
+
+.heroImg {
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+  min-width: 100%;
+  max-height: 100%;
+  transform: var(--transform-scale);
+  z-index: 1;
+}
+
+.textContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-width: 90rem;
+  line-height: 13em;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: $font-caudex;
+  font-size: min(9.6rem, 40vh);
+  color: $color-white;
+  text-align: center;
+  width: 100%;
+
+  @include respond-below(sm) {
+    font-size: min(6.4rem, 20vh);
+    line-height: 1.3em;
+  }
+
+  span {
+    transform: translateY(-4rem);
+    opacity: 0;
+  }
+
+  @for $i from 0 through 50 {
+    span[data-index='#{$i}'] {
+      animation: fade-up 0.4s calc((#{$i} * 0.1s) + 0.3s) forwards ease;
+    }
+  }
+}

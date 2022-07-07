@@ -1,0 +1,95 @@
+@import '@styles/theme.scss';
+
+// Your style here
+
+@keyframes fade-up {
+  0% {
+    transform: translateY(4rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.list {
+  width: 80%;
+  display: flex;
+  &.grid {
+    display: grid;
+    grid-gap: 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, calc(50% - 4rem)));
+  }
+}
+
+.filtersContainer {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 0 2rem;
+}
+
+.filters {
+  background-color: $color-white;
+  width: 100%;
+  max-width: 23rem;
+}
+
+.main {
+  width: 100vw;
+  height: fit-content;
+  display: flex;
+}
+
+.filtersTitle {
+  font-size: 2.6rem;
+  text-transform: uppercase;
+  color: $color-black;
+  font-family: $font-avenir;
+  line-height: 1.2em;
+  margin-bottom: 2rem;
+}
+
+.item {
+  transform: translateY(4rem);
+  opacity: 0;
+  @for $i from 0 through 50 {
+    &[data-index='#{$i}'] {
+      animation: fade-up 0.6s calc((#{$i} * 0.2s) + 0.1s) forwards ease;
+    }
+  }
+}
+
+.emptyList {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  p {
+    width: 60%;
+    text-align: center;
+    font-size: 2.4rem;
+    color: $color-black;
+    font-family: $font-avenir;
+    line-height: 1.4em;
+  }
+}
+
+.clearAll {
+  padding-top: 1rem;
+}
+
+.clearAllBtn {
+  font-size: 1.4rem;
+  font-family: $font-avenir;
+  color: $color-black;
+  background-color: $color-white;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    opacity: 0.5;
+  }
+}

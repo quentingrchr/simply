@@ -1,0 +1,61 @@
+@import '@styles/theme.scss';
+
+.expansionPanel {
+  background-color: $color-white;
+  opacity: 0;
+  padding: 2rem 0;
+  &.top {
+    border-top: $thin-border;
+  }
+  &.bottom {
+    border-bottom: $thin-border;
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.content {
+  height: var(--height);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.header {
+  font-size: 1.6rem;
+  color: $color-black;
+  line-height: 1.75em;
+  font-family: $font-avenir;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+
+  .title {
+    &.caudex {
+      font-family: $font-caudex;
+      text-transform: uppercase;
+    }
+    &.avenir {
+      font-family: $font-avenir;
+    }
+  }
+}
+
+.icon {
+}
+
+.childrenContainer {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.item {
+  font-size: 1.4rem;
+  color: $color-black;
+  line-height: 1.75em;
+  font-family: $font-avenir;
+  &.active {
+    color: $color-primary-light;
+  }
+}

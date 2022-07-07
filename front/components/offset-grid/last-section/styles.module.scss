@@ -1,0 +1,60 @@
+@import '@styles/theme.scss';
+
+.lastSection {
+  color: $color-white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 50vw;
+  height: fit-content;
+  @include respond-below(sm) {
+    max-width: 100vw;
+    width: 100vw;
+    height: fit-content;
+    padding: 5rem 0;
+    gap: 2rem;
+  }
+}
+
+.primary {
+  background-color: $color-primary-dark;
+}
+
+.primaryLight {
+  background-color: $color-primary-light;
+}
+
+.secondary {
+  background-color: $color-secondary;
+  color: $color-black;
+}
+
+.tertiary {
+  background-color: $color-tertiary;
+  color: $color-black;
+  height: 100%;
+
+  &.link {
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: $color-black;
+      color: $color-tertiary;
+    }
+  }
+}
+
+.title {
+  @include typo-h2;
+}
+
+.subtitle {
+  @include typo-h-uppercase;
+}
+
+.titleLink {
+  text-decoration: none;
+  cursor: pointer;
+}
