@@ -31,7 +31,8 @@
       "@hooks": ["hooks"],
       "@hooks/*": ["hooks/*"],
       "@recoil/*": ["recoil/*"],
-      "@recoil": ["recoil"]
+      "@recoil": ["recoil"],
+      "@config/*": ["config/*"]
     },
     "incremental": true
   },

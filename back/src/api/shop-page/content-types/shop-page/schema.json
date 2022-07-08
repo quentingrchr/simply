@@ -18,7 +18,8 @@
     "meta": {
       "type": "component",
       "repeatable": false,
-      "component": "meta.meta-page"
+      "component": "meta.meta-page",
+      "required": true
     }
   }
 }

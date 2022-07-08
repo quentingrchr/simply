@@ -20,6 +20,7 @@ import Footer from './footer'
 import BurgerIcon from './burger-icon'
 import Product from './product'
 import Slider from './slider'
+import PageHead from './page-head'
 
 export {
   Button,
@@ -46,4 +47,5 @@ export {
   BurgerIcon,
   Product,
   Slider,
+  PageHead,
 }

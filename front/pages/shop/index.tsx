@@ -1,15 +1,13 @@
-import { ProductsList, PageLayout, Text } from '@components'
+import { ProductsList, PageLayout, Text, PageHead } from '@components'
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import { useForm, FormProvider } from 'react-hook-form'
-import Image from 'next/image'
+import { useForm } from 'react-hook-form'
 import s from './styles.module.scss'
 import {
   getBaseApiUrl,
   convertStrapiJeweleryToJewelry,
   extractAttr,
 } from '@utils/index'
-import { IJewelryProduct } from '@interfaces/index'
+import { IJewelryProduct, IStrapiMetaComponent } from '@interfaces/index'
 
 const fakeProducts: Array<IJewelryProduct> = [
   {
@@ -155,17 +153,16 @@ const fakeProducts: Array<IJewelryProduct> = [
 interface IProps {
   products: Array<IJewelryProduct>
   topText?: string
+  pageMeta: IStrapiMetaComponent
 }
 
-const Shop: NextPage<IProps> = ({ products, topText }) => {
+const Shop: NextPage<IProps> = ({ products, topText, pageMeta }) => {
   const methods = useForm()
 
   return (
     <>
+      <PageHead meta={pageMeta} />
       <PageLayout>
-        <Head>
-          <title>Simply - Our products </title>
-        </Head>
         <div className={s.header}>
           <div className={s.headerContent}>
             <Text color="black" type="h-uppercase">
@@ -194,15 +191,17 @@ export async function getServerSideProps() {
     return convertStrapiJeweleryToJewelry(apiItem)
   })
 
-  const topTextRes = await fetch(`${getBaseApiUrl()}/shop-page`)
-  const topTextData = await topTextRes.json()
-  const topText = extractAttr(topTextData).topText
-
+  const pageRes = await fetch(`${getBaseApiUrl()}/shop-page?populate=*`)
+  const pageData = await pageRes.json()
+  const topText = extractAttr(pageData).topText
+  const pageMeta = extractAttr(pageData).meta
+  console.log(pageMeta)
   // Pass data to the page via props
   return {
     props: {
       products,
       topText,
+      pageMeta,
     },
   }
 }
