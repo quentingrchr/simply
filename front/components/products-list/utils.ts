@@ -79,7 +79,7 @@ export function filterProducts(
 
   if (filters.collection !== undefined) {
     newProducts = newProducts.filter(
-      (product) => product.meta.collection === filters.collection
+      (product) => product.collection === filters.collection
     )
   }
 
