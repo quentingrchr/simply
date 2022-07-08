@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_datas",
+  "info": {
+    "singularName": "global-data",
+    "pluralName": "global-datas",
+    "displayName": "Global Data"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "returnPolicy": {
+      "type": "richtext"
+    }
+  }
+}

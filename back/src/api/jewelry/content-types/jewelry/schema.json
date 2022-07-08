@@ -13,27 +13,32 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "price": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true
     },
     "currency": {
       "type": "enumeration",
       "enum": [
         "$"
-      ]
+      ],
+      "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "details": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "primaryImg": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -44,7 +49,7 @@
     "secondaryImg": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
