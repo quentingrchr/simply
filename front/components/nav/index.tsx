@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import cn from 'classnames'
 import Link from 'next/link'
 import s from './styles.module.scss'
@@ -8,6 +8,7 @@ import { useSetRecoilState } from 'recoil'
 import { activeModalState } from '@recoil/modal/atom'
 import { headerHeightState } from '@recoil/header/atom'
 import { scrollDisabledState } from '@recoil/scroll/atom'
+import { CartContext } from '@context/cart'
 import { Icon, Logo, BurgerIcon } from '@components'
 
 import { MODAL_CART_ID } from '@recoil/modal/atom'
@@ -40,6 +41,7 @@ export default function Nav({ hasBg, route }: IProps) {
   const setActiveModal = useSetRecoilState(activeModalState)
   const setScrollDisabled = useSetRecoilState(scrollDisabledState)
   const [burgerIsOpen, setBurgerIsOpen] = useState(false)
+  const { cart } = useContext(CartContext)
   const navRef = useRef<any>(null)
 
   useEffect(() => {
@@ -109,7 +111,7 @@ export default function Nav({ hasBg, route }: IProps) {
         <div className={s.navRight}>
           <div className={s.navItem} onClick={openCartModal}>
             <Icon type="cart" size="md" color={hasBg ? 'white' : 'black'} />
-            <span className={s.cartQuantity}>0</span>
+            <span className={s.cartQuantity}>{cart.items.length}</span>
           </div>
           <div className={s.navItem}>
             <Link href="/login">Log In</Link>

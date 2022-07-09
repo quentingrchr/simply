@@ -1,14 +1,13 @@
+import { useContext } from 'react'
 import { Nav, Cart, IconWithTextCta, Button, PageLayout } from '@components'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { CartContext } from '@context/cart'
 import s from './styles.module.scss'
 import { ICartItem } from '@interfaces/index'
 
-import cart from '@data/cart.json'
-
-const CartItems = cart.data as ICartItem[]
-
 const CartPage: NextPage = () => {
+  const { cart } = useContext(CartContext)
   return (
     <>
       <PageLayout>
@@ -17,7 +16,7 @@ const CartPage: NextPage = () => {
             <div className={s.cartHeader}>
               <div className={s.headerTitle}>My cart</div>
             </div>
-            <Cart items={CartItems} variant="advanced" />
+            <Cart items={cart.items} variant="advanced" />
             <div className={s.cartFooter}>
               <div className={s.cartFooterLink}>
                 <IconWithTextCta icon="coupon" text="Enter a coupon" />

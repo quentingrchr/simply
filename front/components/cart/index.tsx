@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
 import { ICartItem } from '@interfaces/index'
 import { useForm, FormProvider } from 'react-hook-form'
+
+// Context
 
 import Item from './item'
 

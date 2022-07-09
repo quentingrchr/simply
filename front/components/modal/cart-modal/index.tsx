@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
 import { useSetRecoilState, useRecoilValue } from 'recoil'
@@ -6,10 +6,12 @@ import { useSetRecoilState, useRecoilValue } from 'recoil'
 // Components
 import { Cart, Icon, Button } from '@components'
 import Modal from '../index'
+
+// Contexts
+import { CartContext } from '@context/cart'
 // Recoil
 import { activeModalState } from '@recoil/modal/atom'
 import { scrollDisabledState } from '@recoil/scroll/atom'
-import { cartState } from '@recoil/cart/atom'
 
 import { MODAL_CART_ID } from '@recoil/modal/atom'
 // Utils
@@ -29,7 +31,7 @@ export default function CartModal(props: IProps) {
   const activeModal = useRecoilValue(activeModalState)
   const setActiveModal = useSetRecoilState(activeModalState)
   const setScrollDisabled = useSetRecoilState(scrollDisabledState)
-  const cart = useRecoilValue(cartState)
+  const { dispatch, cart } = useContext(CartContext)
 
   const handleClose = () => {
     setActiveModal((s) => null)
@@ -37,7 +39,7 @@ export default function CartModal(props: IProps) {
   }
 
   useEffect(() => {
-    console.log(cart)
+    console.log({ cart })
   }, [cart])
 
   return (
@@ -57,19 +59,19 @@ export default function CartModal(props: IProps) {
           <p className={s.headerTitle}>Cart</p>
         </div>
         <div className={s.body}>
-          <Cart items={CartItems} />
+          <Cart items={cart.items} />
         </div>
         <div className={s.preFooter}>
           <div className={s.subTotal}>
             <p className={s.subTotalTitle}>Subtotal</p>
             <p className={s.subTotalPrice}>
-              {getPriceFromCurrency(getTotalPrice(CartItems), '$')}
+              {getPriceFromCurrency(getTotalPrice(cart.items), '$')}
             </p>
           </div>
         </div>
         <div className={s.footer}>
           <div className={s.ctaContainer}>
-            <Button fullWidth variant="primaryLight" onClick={() => {}}>
+            <Button fullWidth variant="primaryLight" to="/cart">
               View Cart
             </Button>
           </div>

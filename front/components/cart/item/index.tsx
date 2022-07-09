@@ -1,8 +1,12 @@
 // Vendors
-import React from 'react'
+import React, { useContext } from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
 import { useFormContext } from 'react-hook-form'
+
+// Context
+import { CartContext } from '@context/cart'
+import { REMOVE_ITEM } from '@context/cart/action'
 
 //Interfaces
 import { ICartItem } from '@interfaces/index'
@@ -29,15 +33,16 @@ export default function Item({
   collection,
   variant,
 }: IProps) {
+  const { dispatch } = useContext(CartContext)
   const isAdvanced = variant === 'advanced'
-  const handleDelete = () => {
-    alert('delete')
+  const handleDelete = (id: string) => {
+    dispatch({ type: REMOVE_ITEM, payload: { id } })
   }
   return (
     // @todo add link to /product/${id}
     <div className={cn(s.cartItem, s[variant])}>
       <div className={s.left}>
-        <div className={s.leftDelete} onClick={handleDelete}>
+        <div className={s.leftDelete} onClick={() => handleDelete(id)}>
           <Icon color="black" type="cross" size="xxs" />
         </div>
         <img className={s.img} src={img.src} alt={img.alt || ''} />
@@ -55,6 +60,7 @@ export default function Item({
             <InputNumber
               variant="small"
               name={`${id}-quantity`}
+              defaultValue={quantity}
               min={0}
               max={1000}
             />
@@ -66,7 +72,7 @@ export default function Item({
           <p className={s.rightTotal}>
             {getPriceFromCurrency(price * quantity, currency)}
           </p>
-          <div className={s.rightDelete} onClick={handleDelete}>
+          <div className={s.rightDelete} onClick={() => handleDelete(id)}>
             <Icon color="black" type="cross" size="xs" />
           </div>
         </div>

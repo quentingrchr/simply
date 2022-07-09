@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import s from './styles.module.scss'
 import { useForm, FormProvider } from 'react-hook-form'
 import cn from 'classnames'
 import { IJewelryProduct, IProduct } from '@interfaces/index'
 import { JewelryColorType } from '@types'
 import { getPriceFromCurrency, productToCartItem } from '@utils/index'
+import { CartContext } from '@context/cart'
+import { ADD_ITEM } from '@context/cart/action'
 import {
   Button,
   ExpansionPanel,
@@ -30,6 +32,7 @@ const colorsTextMap: {
 }
 
 export default function Product({ product }: IProps) {
+  const { dispatch } = useContext(CartContext)
   const methods = useForm({
     defaultValues: {
       ['color' as string]: product.colors[0] as JewelryColorType,
@@ -77,7 +80,19 @@ export default function Product({ product }: IProps) {
                 variant="primaryLight"
                 onClick={() => {
                   // todo dipsatch add to cart the following return
-                  // productToCartItem(product, 'gold', 1)
+                  const quantity = watch('quantity') as number
+                  const color = watch('color') as JewelryColorType
+                  console.log({
+                    product,
+                    quantity,
+                    color,
+                  })
+                  dispatch({
+                    type: ADD_ITEM,
+                    payload: {
+                      item: productToCartItem(product, color, quantity),
+                    },
+                  })
                 }}
                 fullWidth
               >
