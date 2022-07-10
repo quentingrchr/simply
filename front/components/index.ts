@@ -1,5 +1,6 @@
 import Button from './button'
 import SmallSection from './small-section'
+import BigSection from './big-section'
 import Hero from './hero'
 import SlidingLayers from './sliding-layers'
 import Nav from './nav'
@@ -25,6 +26,7 @@ import PageHead from './page-head'
 export {
   Button,
   SmallSection,
+  BigSection,
   Hero,
   SlidingLayers,
   Nav,

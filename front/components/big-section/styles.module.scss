@@ -1,0 +1,74 @@
+@import '@styles/theme.scss';
+
+.bigSection {
+  color: $color-white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100vh;
+  max-width: 50vw;
+  height: fit-content;
+}
+
+.primary {
+  background-color: $color-primary-dark;
+}
+
+.primaryLight {
+  background-color: $color-primary-light;
+}
+
+.secondary {
+  background-color: $color-secondary;
+  color: $color-black;
+}
+
+.secondaryLight {
+  background-color: $color-secondary-light;
+  color: $color-black;
+}
+
+.tertiary {
+  background-color: $color-tertiary;
+  color: $color-black;
+  height: fit-content;
+  gap: 2rem;
+  margin: 6rem;
+}
+
+.title {
+  @include typo-h2;
+}
+
+.subtitle {
+  @include typo-h-uppercase;
+}
+
+.buttonContainer {
+  width: 60%;
+}
+
+.descriptionContainer {
+  width: 70%;
+  p {
+    font-size: 1.6rem;
+    font-family: $font-avenir;
+    line-height: 1.9em;
+    text-align: center;
+  }
+}
+
+.imgContainer {
+  width: 40%;
+  overflow: hidden;
+  &:hover {
+    img {
+      transform: scale(1.1);
+    }
+  }
+  img {
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
+}
