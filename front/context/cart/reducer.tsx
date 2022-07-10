@@ -7,6 +7,7 @@ import {
   INCREMENT_ITEM,
   REMOVE_ITEM,
   SET_CART,
+  SET_QUANTITY,
   ActionType,
 } from './action'
 
@@ -59,10 +60,10 @@ export default function cartReducer(
       return {
         ...state,
         items: state.items.map((cartItem: ICartItem) => {
-          if (cartItem.id === action.payload.itemId) {
+          if (cartItem.id === action.payload.id) {
             return {
               ...cartItem,
-              quantity: cartItem.quantity + action.payload.incrementValue,
+              quantity: cartItem.quantity + action.payload.value,
             }
           }
           return cartItem
@@ -71,24 +72,22 @@ export default function cartReducer(
 
     case DECREMENT_ITEM:
       const decrementedItem = state.items.find(
-        (item) => item.id === action.payload.itemId
+        (item) => item.id === action.payload.id
       )
       if (!decrementedItem) return state
-      if (decrementedItem.quantity - action.payload.decrementValue === 0) {
+      if (decrementedItem.quantity - action.payload.value === 0) {
         return {
           ...state,
-          items: state.items.filter(
-            (item) => item.id !== action.payload.itemId
-          ),
+          items: state.items.filter((item) => item.id !== action.payload.id),
         }
       } else {
         return {
           ...state,
           items: state.items.map((cartItem: ICartItem) => {
-            if (cartItem.id === action.payload.itemId) {
+            if (cartItem.id === action.payload.id) {
               return {
                 ...cartItem,
-                quantity: cartItem.quantity - action.payload.decrementValue,
+                quantity: cartItem.quantity - action.payload.value,
               }
             }
             return cartItem
@@ -100,6 +99,24 @@ export default function cartReducer(
       return {
         ...state,
         items: action.payload as ICartItem[],
+      }
+
+    case SET_QUANTITY:
+      const selectedItem = state.items.find(
+        (item) => item.id === action.payload.id
+      )
+      if (!selectedItem) return state
+      return {
+        ...state,
+        items: state.items.map((cartItem: ICartItem) => {
+          if (cartItem.id === action.payload.id) {
+            return {
+              ...cartItem,
+              quantity: action.payload.quantity,
+            }
+          }
+          return cartItem
+        }),
       }
 
     default:

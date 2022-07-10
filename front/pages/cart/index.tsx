@@ -5,6 +5,8 @@ import Head from 'next/head'
 import { CartContext } from '@context/cart'
 import s from './styles.module.scss'
 import { ICartItem } from '@interfaces/index'
+// Utils
+import { getTotalPrice, getPriceFromCurrency } from '@utils/index'
 
 const CartPage: NextPage = () => {
   const { cart } = useContext(CartContext)
@@ -30,13 +32,17 @@ const CartPage: NextPage = () => {
               <div className={s.order}>
                 <div className={s.orderItem}>
                   <span>Subtotal</span>
-                  <span>$513.00</span>
+                  <span>
+                    {getPriceFromCurrency(getTotalPrice(cart.items), '$')}
+                  </span>
                 </div>
               </div>
               <div className={s.orderFooter}>
                 <div className={s.orderTotal}>
                   <span>Total</span>
-                  <span>$513.00</span>
+                  <span>
+                    {getPriceFromCurrency(getTotalPrice(cart.items), '$')}
+                  </span>
                 </div>
                 <div className={s.orderCta}>
                   <Button fullWidth variant="primaryLight" onClick={() => {}}>

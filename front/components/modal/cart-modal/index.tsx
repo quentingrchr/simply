@@ -33,14 +33,14 @@ export default function CartModal(props: IProps) {
   const setScrollDisabled = useSetRecoilState(scrollDisabledState)
   const { dispatch, cart } = useContext(CartContext)
 
+  useEffect(() => {
+    console.log(cart)
+  }, [cart])
+
   const handleClose = () => {
     setActiveModal((s) => null)
     setScrollDisabled(false)
   }
-
-  useEffect(() => {
-    console.log({ cart })
-  }, [cart])
 
   return (
     <Modal

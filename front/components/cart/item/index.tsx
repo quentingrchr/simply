@@ -1,12 +1,16 @@
 // Vendors
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
 import { useFormContext } from 'react-hook-form'
 
 // Context
 import { CartContext } from '@context/cart'
-import { REMOVE_ITEM } from '@context/cart/action'
+import {
+  REMOVE_ITEM,
+  INCREMENT_ITEM,
+  DECREMENT_ITEM,
+} from '@context/cart/action'
 
 //Interfaces
 import { ICartItem } from '@interfaces/index'
@@ -34,10 +38,20 @@ export default function Item({
   variant,
 }: IProps) {
   const { dispatch } = useContext(CartContext)
+  const { watch } = useFormContext()
   const isAdvanced = variant === 'advanced'
   const handleDelete = (id: string) => {
     dispatch({ type: REMOVE_ITEM, payload: { id } })
   }
+
+  const handleIncrement = (id: string) => {
+    dispatch({ type: INCREMENT_ITEM, payload: { id, value: 1 } })
+  }
+
+  const handleDecrement = (id: string) => {
+    dispatch({ type: DECREMENT_ITEM, payload: { id, value: 1 } })
+  }
+
   return (
     // @todo add link to /product/${id}
     <div className={cn(s.cartItem, s[variant])}>
@@ -63,6 +77,8 @@ export default function Item({
               defaultValue={quantity}
               min={0}
               max={1000}
+              onIncrease={() => handleIncrement(id)}
+              onDecrease={() => handleDecrement(id)}
             />
           </div>
         </div>

@@ -3,6 +3,7 @@ import s from './styles.module.scss'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { activeModalState } from '@recoil/modal/atom'
 import { scrollDisabledState } from '@recoil/scroll/atom'
+import { useRouter } from 'next/router'
 
 import cn from 'classnames'
 
@@ -24,6 +25,8 @@ export default function Modal({
   const activeModal = useRecoilValue(activeModalState)
   const setActiveModal = useSetRecoilState(activeModalState)
   const setScrollDisabled = useSetRecoilState(scrollDisabledState)
+  const router = useRouter()
+  const url = router.pathname
 
   const cssVars = {
     '--animation-duration': `${animationDuration}s`,
@@ -41,6 +44,10 @@ export default function Modal({
       setScrollDisabled(true)
     }
   }, [activeModal])
+
+  useEffect(() => {
+    setActiveModal((s) => null)
+  }, [url])
 
   return (
     <div

@@ -8,6 +8,8 @@ export interface ICarteState {
   items: ICartItem[]
 }
 
+// load cart from local storage
+
 export const CartContext = createContext({
   cart: {
     items: [],
@@ -26,13 +28,13 @@ export const CartContextProvider = ({ children }: ICartContextProps) => {
 
   useEffect(() => {
     // store in local storages
-    sessionStorage.setItem('cart', JSON.stringify(cart))
-    console.log(cart)
+    if (cart.items.length <= 0) return
+    localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
   useEffect(() => {
     // load from local storage
-    const cart = sessionStorage.getItem('cart')
+    const cart = localStorage.getItem('cart')
     const cartLength = cart ? JSON.parse(cart).items.length : 0
     if (cart && cartLength > 0) {
       dispatch({ type: CART_ACTIONS.SET_CART, payload: JSON.parse(cart).items })

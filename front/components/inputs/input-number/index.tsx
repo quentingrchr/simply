@@ -11,6 +11,8 @@ export type IProps = {
   min?: number
   max?: number
   defaultValue?: number
+  onIncrease?: () => void
+  onDecrease?: () => void
 }
 
 export default function InputNumber({
@@ -20,6 +22,8 @@ export default function InputNumber({
   required = false,
   defaultValue = 1,
   variant = 'classic',
+  onIncrease,
+  onDecrease,
 }: IProps) {
   const { control } = useFormContext()
   const {
@@ -32,11 +36,17 @@ export default function InputNumber({
   })
 
   function increase() {
-    if (parseInt(value) < max - 1) onChange(parseInt(value) + 1)
+    if (parseInt(value) < max - 1) {
+      onChange(parseInt(value) + 1)
+      if (onIncrease) onIncrease()
+    }
   }
 
   function decrease() {
-    if (parseInt(value) > min + 1) onChange(parseInt(value) - 1)
+    if (parseInt(value) > min + 1) {
+      onChange(parseInt(value) - 1)
+      if (onDecrease) onDecrease()
+    }
   }
 
   if (variant === 'small') {
