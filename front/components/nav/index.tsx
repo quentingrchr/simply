@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useContext } from 'react'
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useContext,
+  useLayoutEffect,
+} from 'react'
 import cn from 'classnames'
 import Link from 'next/link'
 import s from './styles.module.scss'
@@ -44,7 +50,7 @@ export default function Nav({ hasBg, route }: IProps) {
   const { cart } = useContext(CartContext)
   const navRef = useRef<any>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (navRef.current) {
       setHeaderHeight(navRef.current.offsetHeight)
     }

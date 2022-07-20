@@ -15,13 +15,14 @@ import CartModal from './modal/cart-modal'
 import Text from './text'
 import Icon from './icon'
 import IconWithTextCta from './icon-with-text-cta'
-import { InputNumber, InputRange, InputColor } from './inputs'
+import { InputNumber, InputRange, InputColor, InputText } from './inputs'
 import Logo from './logo'
 import Footer from './footer'
 import BurgerIcon from './burger-icon'
 import Product from './product'
 import Slider from './slider'
 import PageHead from './page-head'
+import SubscribeForm from './subscribe-form'
 
 export {
   Button,
@@ -44,10 +45,12 @@ export {
   InputNumber,
   InputRange,
   InputColor,
+  InputText,
   Logo,
   Footer,
   BurgerIcon,
   Product,
   Slider,
   PageHead,
+  SubscribeForm,
 }

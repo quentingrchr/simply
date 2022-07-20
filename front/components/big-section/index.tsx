@@ -2,7 +2,6 @@ import React from 'react'
 import cn from 'classnames'
 import Link from 'next/link'
 
-import { Button } from '@components'
 import s from './styles.module.scss'
 import { IBasicImage } from '@interfaces/index'
 

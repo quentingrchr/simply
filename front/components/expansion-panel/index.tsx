@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useLayoutEffect } from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
 import { Icon } from '@components'
@@ -29,7 +29,7 @@ export default function ExpansionPanel({
   const [height, setHeight] = useState<number | null>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (contentRef.current) {
       setHeight(contentRef.current.offsetHeight)
       setIsOpen(false)

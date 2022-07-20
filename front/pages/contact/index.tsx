@@ -1,4 +1,11 @@
-import { Nav, Text, PageLayout, OffsetGrid, BigSection } from '@components'
+import {
+  Nav,
+  Text,
+  PageLayout,
+  OffsetGrid,
+  BigSection,
+  SubscribeForm,
+} from '@components'
 import SimpleImage from '@components/offset-grid/simple-image'
 import ParallaxImage from '@components/offset-grid/parallax-image'
 import s from './styles.module.scss'
@@ -66,6 +73,9 @@ const Contact: NextPage = () => {
                   alt: 'Alt text of the image',
                 }}
               />
+            </article>
+            <article className={s.item}>
+              <SubscribeForm />
             </article>
           </div>
         </section>

@@ -7,12 +7,19 @@ import { isInternalURL } from '@utils/index'
 
 interface IProps {
   children: React.ReactNode
-  onClick?: () => void
+  onClick?: (e: any) => void
   to?: string
   target?: string
   fullWidth?: boolean
   upperCase?: boolean
-  variant?: 'primary' | 'primaryLight' | 'secondary' | 'tertiary' | 'white'
+  variant?:
+    | 'primary'
+    | 'primaryLight'
+    | 'secondary'
+    | 'tertiary'
+    | 'white'
+    | 'transparent'
+  type?: 'button' | 'submit'
 }
 
 export default function Button({
@@ -23,6 +30,7 @@ export default function Button({
   fullWidth = false,
   upperCase = false,
   variant = 'primary',
+  type = 'button',
 }: IProps) {
   const classNames = cn(
     s.button,
@@ -34,10 +42,11 @@ export default function Button({
   if (onClick !== undefined) {
     return (
       <button
-        onClick={() => {
-          onClick()
+        onClick={(e: any) => {
+          onClick(e)
         }}
         className={classNames}
+        type={type}
       >
         <span className={s.label}>{children}</span>
         <span className={s.bg}></span>

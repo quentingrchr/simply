@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import cn from 'classnames'
 import s from './styles.module.scss'
 import { useScroll } from '@hooks'
 import { IBasicImage } from '@interfaces/index'
+import { headerHeightState } from '@recoil/header/atom'
+import { useRecoilValue } from 'recoil'
 
 export interface IProps {
   img: IBasicImage
@@ -13,6 +15,7 @@ export default function ParallaxImage({ img }: IProps) {
   const [distanceFromTop, setDistanceFromTop] = useState(0)
   const [height, setHeight] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
+  const headerHeight = useRecoilValue(headerHeightState)
 
   function handleResize() {
     if (
@@ -28,20 +31,20 @@ export default function ParallaxImage({ img }: IProps) {
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (document && document.body && window) {
       setDistanceFromTop(document.body.scrollHeight)
       setHeight(window.innerHeight)
     }
-  }, [containerRef])
+  }, [containerRef, headerHeight])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (containerRef.current) {
       setDistanceFromTop(
         window.pageYOffset + containerRef.current.getBoundingClientRect().top
       )
     }
-  }, [containerRef])
+  }, [containerRef, headerHeight])
 
   useEffect(() => {
     window.addEventListener('resize', handleResize)

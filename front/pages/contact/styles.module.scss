@@ -18,18 +18,13 @@
   text-align: center;
 }
 
-.content {
-  padding-top: 15rem;
-}
-
 .grid {
-  display: grid;
   width: 100vw;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  --offset: 20vh;
-  position: relative;
-  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 0.2fr 0.7fr 0.35fr 0.7fr 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
   @include respond-below(sm) {
     display: flex;
     flex-direction: column;
@@ -39,9 +34,10 @@
 }
 
 .item {
-  width: 50vw;
-  height: 100vh;
-  background-color: $color-primary-light;
+  // width: 50vw;
+  // height: 100vh;
+  display: flex;
+  justify-content: stretch;
   @include respond-below(sm) {
     width: 100vw;
     display: flex;
@@ -50,20 +46,19 @@
     height: 90vh;
     min-height: 60rem;
   }
-  @include respond-above(md) {
-    &:nth-child(odd) {
-      transform: translateY(calc(var(--offset) * -1));
-    }
+  &:nth-child(1) {
+    grid-area: 1 / 1 / 3 / 2;
   }
-}
-
-.lastItem {
-  min-height: var(--offset);
-  transform: translateY(calc(var(--offset) * -1));
-  margin-bottom: calc(var(--offset) * -1);
-  @include respond-below(sm) {
-    min-height: unset;
-    margin-bottom: 0;
-    transform: none;
+  &:nth-child(2) {
+    grid-area: 2 / 2 / 4 / 3;
+  }
+  &:nth-child(3) {
+    grid-area: 3 / 1 / 5 / 2;
+  }
+  &:nth-child(4) {
+    grid-area: 4 / 2 / 5 / 3;
+  }
+  &:nth-child(5) {
+    grid-area: 5 / 1 / 6 / 3;
   }
 }

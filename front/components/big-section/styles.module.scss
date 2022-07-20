@@ -4,29 +4,33 @@
   color: $color-white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  min-height: 100vh;
+  align-items: flex-start;
+  justify-content: space-between;
+  // min-height: 70vh;
   max-width: 50vw;
-  height: fit-content;
+  padding: 4rem;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .primary {
   background-color: $color-primary-dark;
+  --color-text: #{$color-white};
 }
 
 .primaryLight {
   background-color: $color-primary-light;
+  --color-text: #{$color-black};
 }
 
 .secondary {
   background-color: $color-secondary;
-  color: $color-black;
+  --color-text: #{$color-black};
 }
 
 .secondaryLight {
   background-color: $color-secondary-light;
-  color: $color-black;
+  --color-text: #{$color-black};
 }
 
 .tertiary {
@@ -38,37 +42,35 @@
 }
 
 .title {
-  @include typo-h2;
+  // @include typo-h2;
+  @include typo-h-uppercase;
+  font-size: 2rem;
+  letter-spacing: 0.25em;
+  color: var(--color-text);
 }
 
 .subtitle {
   @include typo-h-uppercase;
+  color: var(--color-text);
 }
 
-.buttonContainer {
-  width: 60%;
+.subSections {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 4rem;
 }
 
-.descriptionContainer {
-  width: 70%;
-  p {
-    font-size: 1.6rem;
-    font-family: $font-avenir;
-    line-height: 1.9em;
-    text-align: center;
-  }
-}
-
-.imgContainer {
-  width: 40%;
-  overflow: hidden;
-  &:hover {
-    img {
-      transform: scale(1.1);
-    }
-  }
-  img {
-    width: 100%;
-    transition: transform 0.3s ease;
+.wysiwyg {
+  flex: 1;
+  font-size: 5.6rem;
+  line-height: normal;
+  color: var(--color-text);
+  margin-top: 4rem;
+  font-family: $font-caudex;
+  a {
+    font-size: 5.6rem;
+    color: var(--color-text);
+    text-decoration: none;
   }
 }

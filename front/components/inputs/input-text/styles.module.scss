@@ -1,0 +1,21 @@
+@import '@styles/theme.scss';
+
+// Your style here
+.container {
+}
+
+.input {
+  padding-bottom: 2rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid $color-black;
+  font-weight: lighter;
+  width: 100%;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.6rem;
+
+  &:not(:valid) {
+    border-bottom: 2px solid $color-error;
+  }
+}

@@ -1,0 +1,62 @@
+@import '@styles/theme.scss';
+
+// Your style here
+.subscribeForm {
+  background-color: $color-tertiary;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  margin: auto;
+  max-width: 1000px;
+  color: $color-black;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.subtitle {
+  text-align: center;
+  @include typo-h-uppercase;
+}
+
+.title {
+  font-size: 5.6rem;
+  margin-top: 4rem;
+  font-family: $font-caudex;
+  line-height: normal;
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  margin-top: 5rem;
+  a {
+    font-size: 5.6rem;
+    text-decoration: none;
+  }
+}
+
+.form {
+  width: 50%;
+  min-width: 30rem;
+  margin: auto;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.success {
+  font-weight: lighter;
+  width: 100%;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.6rem;
+  width: 100%;
+  text-align: center;
+}

@@ -1,8 +1,6 @@
+@import '@styles/theme.scss';
 
-@import "@styles/theme.scss";
-
-
-.button{
+.button {
   outline: none;
   border: none;
   color: var(--btn-color);
@@ -13,7 +11,7 @@
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
-  transition: .3s ease all;
+  transition: 0.3s ease all;
   text-decoration: none;
   cursor: pointer;
   font-weight: 200;
@@ -25,26 +23,27 @@
     text-decoration: none;
   }
 
-  .label{
+  .label {
     margin: 1rem 1rem;
     position: relative;
     z-index: 2;
   }
 
-  .bg{
+  .bg {
     position: absolute;
     width: 100%;
     height: 100%;
     background: var(--btn-hover-background-color);
     transform: scaleX(0);
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
     transform-origin: left;
     z-index: 1;
     clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
   }
-  
-  &:hover{
-    .bg{
+
+  &:hover {
+    color: var(--btn-hover-color, var(--btn-color), $color-black);
+    .bg {
       transform: scaleX(1.2);
     }
   }
@@ -62,27 +61,34 @@
   --btn-background: #{$color-primary-light};
   --btn-hover-background-color: #{$color-primary-dark};
   border: 1px solid $color-white;
-
 }
 
-.secondary{
+.secondary {
   --btn-color: #{$color-black};
   --btn-background: #{$color-secondary};
   --btn-hover-background-color: #{$color-white};
-  border: 1px solid $color-black; 
+  border: 1px solid $color-black;
 }
 
-.white{
+.white {
   --btn-color: #{$color-black};
   --btn-background: #{$color-white};
   --btn-hover-background-color: #{$color-white};
-  border: 1px solid $color-black; 
+  border: 1px solid $color-black;
 }
 
-.fullWidth{
+.transparent {
+  --btn-color: #{$color-black};
+  --btn-background: transparent;
+  --btn-hover-background-color: #{$color-black};
+  --btn-hover-color: #{$color-white};
+  border: 1px solid $color-black;
+}
+
+.fullWidth {
   width: 100%;
 }
 
-.upperCase{
+.upperCase {
   text-transform: uppercase;
 }
