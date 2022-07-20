@@ -1,0 +1,14 @@
+@import '@styles/theme.scss';
+
+.error {
+  font-size: 3rem;
+  line-height: normal;
+  text-align: center;
+  color: var(--color-text, $color-black);
+  margin: 4rem auto;
+  font-family: $font-caudex;
+  max-width: 80vw;
+  a {
+    color: var(--color-text, $color-black);
+  }
+}
