@@ -16,7 +16,7 @@ export default function InputText({
 }: IProps) {
   const methods = useFormContext()
   if (!methods) return null
-  const { register, errors } = methods
+  const { register } = methods
   return (
     <div className={s.container}>
       <input

@@ -18,4 +18,5 @@
   &:not(:valid) {
     border-bottom: 2px solid $color-error;
   }
+  @include input-reset-styles;
 }

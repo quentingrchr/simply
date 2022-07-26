@@ -12,6 +12,7 @@ export interface IProps {
   title?: string
   subtitle?: string
   description?: string
+  descriptions?: string[]
   className?: string
   button?: {
     text: string
@@ -20,10 +21,14 @@ export interface IProps {
     target?: string
   }
 }
-
+/* todo 
+tranform this component into a component that accepts an array of items and renders them in the correct order
+type of item: img / button / subtitle / title / description
+*/
 export default function SmallSection({
   button,
   description,
+  descriptions,
   img,
   subtitle,
   title,
@@ -40,9 +45,22 @@ export default function SmallSection({
       {title && <h2 className={s.title}>{title}</h2>}
       {description && (
         <div className={s.descriptionContainer}>
-          <p className={s.description}>{description}</p>
+          <p
+            className={s.description}
+            dangerouslySetInnerHTML={{ __html: description }}
+          ></p>
         </div>
       )}
+      {descriptions &&
+        descriptions?.length > 0 &&
+        descriptions?.map((d) => (
+          <div className={s.descriptionContainer}>
+            <p
+              className={s.description}
+              dangerouslySetInnerHTML={{ __html: d }}
+            ></p>
+          </div>
+        ))}
       {img && (
         <div className={s.imgContainer}>
           <img
