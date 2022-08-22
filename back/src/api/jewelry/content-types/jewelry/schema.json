@@ -68,6 +68,11 @@
       "relation": "manyToMany",
       "target": "api::jewelry-color.jewelry-color",
       "inversedBy": "jewelries"
+    },
+    "strapiProductId": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }
