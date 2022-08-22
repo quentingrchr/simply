@@ -42,7 +42,7 @@
   }
 
   &:hover {
-    color: var(--btn-hover-color, var(--btn-color), $color-black);
+    color: var(--btn-color, var(--color), $color-black);
     .bg {
       transform: scaleX(1.2);
     }
@@ -83,6 +83,9 @@
   --btn-hover-background-color: #{$color-black};
   --btn-hover-color: #{$color-white};
   border: 1px solid $color-black;
+  &:hover {
+    --btn-color: #{$color-white};
+  }
 }
 
 .fullWidth {

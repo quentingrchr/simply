@@ -17,6 +17,13 @@ export default function InputText({
   const methods = useFormContext()
   if (!methods) return null
   const { register } = methods
+  const optionalParams = {} as any
+  if (type === 'email') {
+    optionalParams.pattern = {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+      message: 'Invalid email',
+    }
+  }
   return (
     <div className={s.container}>
       <input
@@ -24,6 +31,7 @@ export default function InputText({
         type={type}
         {...register(id, {
           required: required ? true : false,
+          ...optionalParams,
         })}
       />
     </div>

@@ -18,15 +18,19 @@ export interface IProps {
     | 'tertiary'
   subSections?: ISubSection[]
   className?: string
+  align?: 'left' | 'center' | 'right'
 }
 
 export default function BigSection({
   subSections,
   variant = 'primary',
   className = '',
+  align = 'left',
 }: IProps) {
   return (
-    <div className={cn(s.bigSection, s[variant], className)}>
+    <div
+      className={cn(s.bigSection, s[variant], s[`align-${align}`], className)}
+    >
       {subSections?.map(({ title, wysiwyg }, index) => {
         return (
           <div className={s.subSection} key={index}>

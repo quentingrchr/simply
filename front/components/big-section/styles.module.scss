@@ -7,10 +7,23 @@
   align-items: flex-start;
   justify-content: space-between;
   // min-height: 70vh;
+  width: 100%;
   max-width: 50vw;
   padding: 4rem;
   height: 100%;
   box-sizing: border-box;
+  &.align-center {
+    text-align: center;
+    align-items: center;
+  }
+  &.align-right {
+    text-align: right;
+    align-items: flex-end;
+  }
+  &.align-left {
+    text-align: left;
+    align-items: flex-start;
+  }
 }
 
 .primary {
@@ -47,6 +60,7 @@
   font-size: 2rem;
   letter-spacing: 0.25em;
   color: var(--color-text);
+  margin-top: 19%;
 }
 
 .subtitle {

@@ -8,6 +8,7 @@ import OffsetGrid from './offset-grid'
 import ProductsList from './products-list'
 import ExpansionPanel from './expansion-panel'
 import ExpansionPanelGroup from './expansion-panel-group'
+import ParallaxImage from './offset-grid/parallax-image'
 import PageLayout from './page-layout'
 import Modal from './modal'
 import Cart from './cart'
@@ -53,4 +54,5 @@ export {
   Slider,
   PageHead,
   SubscribeForm,
+  ParallaxImage,
 }

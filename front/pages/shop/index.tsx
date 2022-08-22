@@ -161,7 +161,7 @@ const Shop: NextPage<IProps> = ({ products, topText, pageMeta }) => {
 
   return (
     <>
-      <PageHead meta={pageMeta} />
+      {!!pageMeta && <PageHead meta={pageMeta} />}
       <PageLayout>
         <div className={s.header}>
           <div className={s.headerContent}>
@@ -176,7 +176,8 @@ const Shop: NextPage<IProps> = ({ products, topText, pageMeta }) => {
           </div>
         </div>
         {/* <FormProvider {...methods}> */}
-        <ProductsList products={products} />
+        {!!products && <ProductsList products={products} />}
+
         {/* </FormProvider> */}
       </PageLayout>
     </>
@@ -185,24 +186,38 @@ const Shop: NextPage<IProps> = ({ products, topText, pageMeta }) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const jewelriesRes = await fetch(`${getBaseApiUrl()}/jewelries?populate=*`)
-  const jewelriesData = await jewelriesRes.json()
-  const products = jewelriesData.data.map((apiItem: any): IJewelryProduct => {
-    return convertStrapiJeweleryToJewelry(apiItem)
-  })
+  try {
+    const jewelriesRes = await fetch(`${getBaseApiUrl()}/jewelries?populate=*`)
+    const jewelriesData = await jewelriesRes.json()
+    let products
+    if (jewelriesData.length > 0) {
+      products = jewelriesData.data.map((apiItem: any): IJewelryProduct => {
+        return convertStrapiJeweleryToJewelry(apiItem)
+      })
+    }
 
-  const pageRes = await fetch(`${getBaseApiUrl()}/shop-page?populate=*`)
-  const pageData = await pageRes.json()
-  const topText = extractAttr(pageData).topText
-  const pageMeta = extractAttr(pageData).meta
-  console.log(pageMeta)
-  // Pass data to the page via props
-  return {
-    props: {
-      products,
-      topText,
-      pageMeta,
-    },
+    const pageRes = await fetch(`${getBaseApiUrl()}/shop-page?populate=*`)
+    const pageData = await pageRes.json()
+    const topText = pageData ? extractAttr(pageData).topText : null
+    const pageMeta = pageData ? extractAttr(pageData).meta : null
+
+    // Pass data to the page via props
+    return {
+      props: {
+        products,
+        topText,
+        pageMeta,
+      },
+    }
+  } catch (err) {
+    console.log(err)
+    return {
+      props: {
+        products: [],
+        topText: null,
+        pageMeta: null,
+      },
+    }
   }
 }
 

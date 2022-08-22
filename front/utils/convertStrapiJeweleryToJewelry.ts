@@ -28,5 +28,6 @@ export default function convertStrapiJeweleryToJewelry(
       (colorData: any) => colorData.attributes.name
     ),
     collection: extractAttr(product.collection).name,
+    strapiProductId: product.strapiProductId,
   } as IJewelryProduct
 }

@@ -1,3 +1,4 @@
 export default function getBaseApiUrl() {
-  return 'http://localhost:1337/api'
+  // console.log(process.env.BACK_END_URL)
+  return process.env.BACK_END_URL
 }

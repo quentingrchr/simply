@@ -11,10 +11,8 @@ export default function SubscribeForm(props: IProps) {
   const [email, setEmail] = React.useState('')
   const methods = useForm()
   const { handleSubmit, watch, formState, reset } = methods
-  console.log(formState.errors)
 
   function onSubmit(data: any) {
-    console.log(data)
     setHasBeenSubmitted(true)
     setEmail(data.email)
     reset()

@@ -88,9 +88,6 @@ export default function ProductsList({ products }: IProps) {
               )}
             </ExpansionPanel>
             <ExpansionPanel title="Colors" items={colorsItems} />
-            <ExpansionPanel title="Colors">
-              {/* <InputColor colors={colors as [JewelryColorType]} /> */}
-            </ExpansionPanel>
             <div className={s.clearAll}>
               {hasAnActiveFilter && (
                 <button
