@@ -16,7 +16,7 @@ import Head from 'next/head'
 const About: NextPage = () => {
   return (
     <>
-      <Head></Head>
+      {/* <Head></Head> */}
       <PageLayout>
         <div className={s.header}>
           <div className={s.headerContent}>

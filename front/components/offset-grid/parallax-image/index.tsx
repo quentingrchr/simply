@@ -6,6 +6,15 @@ import { IBasicImage } from '@interfaces/index'
 import { headerHeightState } from '@recoil/header/atom'
 import { useRecoilValue } from 'recoil'
 
+// React currently throws a warning when using useLayoutEffect on the server.
+// To get around it, we can conditionally useEffect on the server (no-op) and
+// useLayoutEffect in the browser.
+const canUseDOM: boolean = !!(
+  typeof window !== 'undefined' &&
+  typeof window.document !== 'undefined' &&
+  typeof window.document.createElement !== 'undefined'
+)
+const useIsomorphicLayoutEffect = canUseDOM ? useLayoutEffect : useEffect
 export interface IProps {
   img: IBasicImage
 }
@@ -31,14 +40,14 @@ export default function ParallaxImage({ img }: IProps) {
     }
   }
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (document && document.body && window) {
       setDistanceFromTop(document.body.scrollHeight)
       setHeight(window.innerHeight)
     }
   }, [containerRef, headerHeight])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (containerRef.current) {
       setDistanceFromTop(
         window.pageYOffset + containerRef.current.getBoundingClientRect().top

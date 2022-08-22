@@ -18,6 +18,16 @@ import { CartContext } from '@context/cart'
 import { Icon, Logo, BurgerIcon } from '@components'
 
 import { MODAL_CART_ID } from '@recoil/modal/atom'
+
+// React currently throws a warning when using useLayoutEffect on the server.
+// To get around it, we can conditionally useEffect on the server (no-op) and
+// useLayoutEffect in the browser.
+const canUseDOM: boolean = !!(
+  typeof window !== 'undefined' &&
+  typeof window.document !== 'undefined' &&
+  typeof window.document.createElement !== 'undefined'
+)
+const useIsomorphicLayoutEffect = canUseDOM ? useLayoutEffect : useEffect
 interface IProps {
   route: string
   hasBg?: boolean
@@ -50,11 +60,11 @@ export default function Nav({ hasBg, route }: IProps) {
   const { cart } = useContext(CartContext)
   const navRef = useRef<any>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (navRef.current) {
       setHeaderHeight(navRef.current.offsetHeight)
     }
-  }, [navRef])
+  }, [navRef, setHeaderHeight])
 
   const openCartModal = () => {
     setActiveModal(MODAL_CART_ID)

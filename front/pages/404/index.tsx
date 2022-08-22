@@ -17,6 +17,7 @@ const FourOhFour: NextPage = () => {
           <a
             href="https://github.com/quentingrchr/simply/issues"
             target="_blank"
+            rel="noreferrer"
           >
             here
           </a>

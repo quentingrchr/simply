@@ -20,8 +20,9 @@ export type IProps = {
 const data: Array<ICartItem> = []
 
 const EmptyCard = ({ variant }: { variant?: VariantType }) => {
+  const additionalClass = variant ? s[variant] : ''
   return (
-    <div className={cn(s.empty, s[variant])}>
+    <div className={cn(s.empty, additionalClass)}>
       <Text type="paragraph" color="black">
         Looks like your cart is empty
       </Text>

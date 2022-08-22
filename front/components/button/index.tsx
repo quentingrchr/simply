@@ -54,7 +54,7 @@ export default function Button({
     )
   } else if (to && isInternalURL(to)) {
     return (
-      <Link href={to} target={target}>
+      <Link href={to} target={target} rel="noreferrer">
         <a className={classNames}>
           <span className={s.label}>{children}</span>
           <span className={s.bg}></span>
@@ -63,7 +63,7 @@ export default function Button({
     )
   } else if (to && !isInternalURL(to)) {
     return (
-      <a className={classNames} href={to} target={target}>
+      <a className={classNames} href={to} target={target} rel="noreferrer">
         <span className={s.label}>{children}</span>
         <span className={s.bg}></span>
       </a>

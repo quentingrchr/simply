@@ -15,7 +15,7 @@ import Head from 'next/head'
 const Contact: NextPage = () => {
   return (
     <>
-      <Head></Head>
+      {/* <Head></Head> */}
       <PageLayout>
         <div className={s.header}>
           <div className={s.headerContent}>

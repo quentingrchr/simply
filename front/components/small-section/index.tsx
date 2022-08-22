@@ -53,8 +53,8 @@ export default function SmallSection({
       )}
       {descriptions &&
         descriptions?.length > 0 &&
-        descriptions?.map((d) => (
-          <div className={s.descriptionContainer}>
+        descriptions?.map((d, i) => (
+          <div className={s.descriptionContainer} key={i}>
             <p
               className={s.description}
               dangerouslySetInnerHTML={{ __html: d }}

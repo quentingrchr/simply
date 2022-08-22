@@ -1,7 +1,17 @@
-import React, { useState, useRef, useLayoutEffect } from 'react'
+import React, { useState, useRef, useLayoutEffect, useEffect } from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
 import { Icon } from '@components'
+
+// React currently throws a warning when using useLayoutEffect on the server.
+// To get around it, we can conditionally useEffect on the server (no-op) and
+// useLayoutEffect in the browser.
+const canUseDOM: boolean = !!(
+  typeof window !== 'undefined' &&
+  typeof window.document !== 'undefined' &&
+  typeof window.document.createElement !== 'undefined'
+)
+const useIsomorphicLayoutEffect = canUseDOM ? useLayoutEffect : useEffect
 
 export type IProps = {
   children?: React.ReactNode
@@ -29,7 +39,7 @@ export default function ExpansionPanel({
   const [height, setHeight] = useState<number | null>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (contentRef.current) {
       setHeight(contentRef.current.offsetHeight)
       setIsOpen(false)
