@@ -30,8 +30,8 @@ export async function getServerSideProps({ params }: any) {
     `${getBaseApiUrl()}/jewelries/${params.id}?populate=*`
   )
   const apiData = await res.json()
+  console.log({apiData});
   const product = convertStrapiJeweleryToJewelry(apiData.data)
-
   return {
     props: {
       product,

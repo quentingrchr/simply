@@ -17,6 +17,7 @@ interface IProps {
 
 const Shop: NextPage<IProps> = ({ products, topText, pageMeta }) => {
   const methods = useForm()
+  console.log({products});
 
   return (
     <>
@@ -45,11 +46,12 @@ const Shop: NextPage<IProps> = ({ products, topText, pageMeta }) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
+  let products
   try {
     const jewelriesRes = await fetch(`${getBaseApiUrl()}/jewelries?populate=*`)
     const jewelriesData = await jewelriesRes.json()
-    let products
-    if (jewelriesData.length > 0) {
+    if (jewelriesData.data.length > 0) {
+      console.log('é"réré"');
       products = jewelriesData.data.map((apiItem: any): IJewelryProduct => {
         return convertStrapiJeweleryToJewelry(apiItem)
       })
@@ -72,7 +74,7 @@ export async function getServerSideProps() {
     console.log(err)
     return {
       props: {
-        products: [],
+        products,
         topText: null,
         pageMeta: null,
       },
