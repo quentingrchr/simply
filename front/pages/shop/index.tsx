@@ -51,7 +51,6 @@ export async function getServerSideProps() {
     const jewelriesRes = await fetch(`${getBaseApiUrl()}/jewelries?populate=*`)
     const jewelriesData = await jewelriesRes.json()
     if (jewelriesData.data.length > 0) {
-      console.log('é"réré"');
       products = jewelriesData.data.map((apiItem: any): IJewelryProduct => {
         return convertStrapiJeweleryToJewelry(apiItem)
       })
