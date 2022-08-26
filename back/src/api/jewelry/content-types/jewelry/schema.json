@@ -73,6 +73,12 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::jewelry-type.jewelry-type",
+      "inversedBy": "jewelries"
     }
   }
 }

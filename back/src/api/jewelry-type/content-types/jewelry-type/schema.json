@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jewelry_types",
+  "info": {
+    "singularName": "jewelry-type",
+    "pluralName": "jewelry-types",
+    "displayName": "Jewelry Type"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "jewelries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::jewelry.jewelry",
+      "mappedBy": "type"
+    }
+  }
+}
