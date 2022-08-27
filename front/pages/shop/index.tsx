@@ -46,10 +46,11 @@ const Shop: NextPage<IProps> = ({ products, topText, pageMeta }) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  let products
+  let products = null;
   try {
     const jewelriesRes = await fetch(`${getBaseApiUrl()}/jewelries?populate=*`)
     const jewelriesData = await jewelriesRes.json()
+    console.log(jewelriesData.data);
     if (jewelriesData.data.length > 0) {
       products = jewelriesData.data.map((apiItem: any): IJewelryProduct => {
         return convertStrapiJeweleryToJewelry(apiItem)

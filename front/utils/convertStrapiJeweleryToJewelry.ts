@@ -6,17 +6,22 @@ export default function convertStrapiJeweleryToJewelry(
 ): IJewelryProduct {
   const product = apiItem.attributes
   const id = apiItem.id
-  return {
-    id,
-    primaryImg: {
-      src: `${process.env.BACK_END_URL}${extractAttr(product.primaryImg).url}`,
-      alt: extractAttr(product.primaryImg).alternativeText,
-    },
-    secondaryImg: {
-      src: `${process.env.BACK_END_URL}${
+  const optionnalFields = {} as any
+  console.log(extractAttr(product.primaryImg).url)
+  if(product?.secondaryImg?.data) {
+    optionnalFields.secondaryImg = {
+      src: `${
         extractAttr(product.secondaryImg).url
       }`,
       alt: extractAttr(product.secondaryImg).alternativeText,
+    }
+  }
+
+  return {
+    id,
+    primaryImg: {
+      src: `${extractAttr(product.primaryImg).url}`,
+      alt: extractAttr(product.primaryImg).alternativeText,
     },
     type: 'jewelry',
     description: product.description,
@@ -29,5 +34,6 @@ export default function convertStrapiJeweleryToJewelry(
     ),
     collection: extractAttr(product.collection).name,
     strapiProductId: product.strapiProductId,
+    ...optionnalFields,
   } as IJewelryProduct
 }

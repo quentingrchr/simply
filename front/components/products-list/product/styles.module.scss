@@ -19,6 +19,8 @@
   position: relative;
   z-index: 3;
   transition: opacity 0.3s ease;
+  transform: scale(1);
+  transition: transform 0.3s ease;
 }
 
 .imgContainerVerso {
@@ -105,15 +107,7 @@
   --border-width: 1.6rem;
   --border-color: #{$color-black};
   // max-width: var(--img-width);
-
   &:hover {
-    .imgContainerRecto {
-      opacity: 0;
-    }
-    .imgContainerVerso {
-      transform: scale(1.1);
-    }
-
     .borderLeft,
     .borderRight {
       transform: scaleX(1);
@@ -122,6 +116,25 @@
     .borderTop,
     .borderBottom {
       transform: scaleY(1);
+    }
+  }
+
+  &:not(.hasSecondaryImage) {
+    &:hover {
+      .imgContainerRecto {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &.hasSecondaryImage {
+    &:hover {
+      .imgContainerRecto {
+        opacity: 0;
+      }
+      .imgContainerVerso {
+        transform: scale(1.1);
+      }
     }
   }
 }
