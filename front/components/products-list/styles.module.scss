@@ -21,6 +21,9 @@
     display: grid;
     grid-gap: 4rem;
     grid-template-columns: repeat(auto-fit, minmax(300px, calc(50% - 4rem)));
+    @include respond-above(lg){
+      grid-template-columns: repeat(auto-fit, minmax(300px, calc(33% - 4rem)));
+    }
   }
 }
 
