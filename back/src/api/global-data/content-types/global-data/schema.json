@@ -4,7 +4,8 @@
   "info": {
     "singularName": "global-data",
     "pluralName": "global-datas",
-    "displayName": "Global Data"
+    "displayName": "Global Data",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,21 @@
   "attributes": {
     "returnPolicy": {
       "type": "richtext"
+    },
+    "shippingInfo": {
+      "type": "richtext"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "openingHours": {
+      "type": "string"
     }
   }
 }
