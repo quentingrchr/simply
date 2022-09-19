@@ -8,9 +8,11 @@ export type ColorsType =
   | 'primary-light'
   | 'primary-dark'
   | 'secondary'
+  | 'secondary-light'
   | 'tertiary'
   | 'black'
   | 'white'
+
 export type CurrencyType = '$' | '€'
 export type IconsType =
   | 'cart'
@@ -23,6 +25,7 @@ export type IconsType =
   | 'plus-sign'
   | 'minus-sign'
   | 'cross'
+  | 'eye-blocked'
 
 export type JewelryColorType = 'silver' | 'gold'
 

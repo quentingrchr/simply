@@ -61,6 +61,7 @@ export default function InputNumber({
           value={value}
           min={min}
           max={max}
+          onChange={(e) => onChange(e.target.value)}
         />
         <span className={s.cta} onClick={increase}>
           <Icon type="plus-sign" color="black" size="xs" position="center" />

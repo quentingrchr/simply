@@ -11,6 +11,7 @@ export type IProps = {
     | 'tertiary'
     | 'black'
     | 'white'
+    | 'error'
   className?: string
   type: 'h1' | 'h2' | 'h-uppercase' | 'paragraph'
 }

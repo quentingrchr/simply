@@ -99,6 +99,13 @@ export default function Nav({ hasBg, route }: IProps) {
               <Link href={item.href}>{item.label}</Link>
             </li>
           ))}
+          <li
+              key={'login'}
+              className={cn(s.navItem, { [s.active]: route == '/login' })}
+              onClick={closeBurger}
+            >
+              <Link href='/login'>Login</Link>
+            </li>
         </ul>
       </div>
       {/* End of burger menu */}
@@ -129,7 +136,7 @@ export default function Nav({ hasBg, route }: IProps) {
             <Icon type="cart" size="md" color={hasBg ? 'white' : 'black'} />
             <span className={s.cartQuantity}>{cart.items.length}</span>
           </div>
-          <div className={cn(s.navItem, s.navLogin)}>
+          <div className={cn(s.navItem, s.desktopOnly)}>
             <Link href="/login">Log In</Link>
           </div>
         </div>

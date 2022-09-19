@@ -1,0 +1,10 @@
+@import "@styles/theme.scss";
+
+// Your style here
+
+.noteInput{
+    padding: 2rem 2.6rem;
+    font-family: $font-avenir;
+    border: none;
+    border-bottom: 1px solid $color-black;
+  }

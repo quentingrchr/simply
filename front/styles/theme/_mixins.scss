@@ -43,8 +43,16 @@
     color: $color-secondary;
   }
 
+  .secondary-light{
+    color: $color-secondary-light;
+  }
+
   .tertiary {
     color: $color-tertiary;
+  }
+  
+  .error{
+    color: $color-error;
   }
 }
 

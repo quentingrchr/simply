@@ -10,6 +10,11 @@
   font-family: $font-avenir;
   color: $color-black;
   --padding-y-cart-item: 3rem;
+  @include respond-below(md) {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 5%;
+  }
 }
 .cartContainer {
   flex: 3.5;
@@ -56,3 +61,9 @@
   display: flex;
   justify-content: space-between;
 }
+
+
+.cartFooterItem{
+}
+
+

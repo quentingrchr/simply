@@ -26,6 +26,8 @@ import PageHead from './page-head'
 import SubscribeForm from './subscribe-form'
 import ProductFilters from './products-list/product-filters'
 import ProductListFiltersModal from './modal/product-list-filters-modal'
+import CartCoupon from './cart/cart-coupon'
+import CartNote from './cart/cart-note'
 
 export {
   Button,
@@ -58,5 +60,7 @@ export {
   SubscribeForm,
   ParallaxImage,
   ProductFilters, 
-  ProductListFiltersModal
+  ProductListFiltersModal,
+  CartCoupon,
+  CartNote
 }

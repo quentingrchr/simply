@@ -41,15 +41,10 @@ export default function ExpansionPanel({
 
   useIsomorphicLayoutEffect(() => {
     if (contentRef.current) {
-      console.log(isOpen);
       setHeight(contentRef.current.offsetHeight)
       setIsOpen(false)
     }
   }, [contentRef])
-
-  useEffect(() => {
-    console.log(height)
-  }, [height])
 
   const cssVars = {
     '--height': `${isOpen ? height : '0'}px`,

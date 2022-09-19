@@ -1,5 +1,5 @@
-import { useContext } from 'react'
-import { Nav, Cart, IconWithTextCta, Button, PageLayout } from '@components'
+import { useContext, useState } from 'react'
+import { Nav, Cart, CartNote, Button, PageLayout, CartCoupon } from '@components'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { CartContext } from '@context/cart'
@@ -11,6 +11,7 @@ import { getTotalPrice, getPriceFromCurrency } from '@utils/index'
 const CartPage: NextPage = () => {
   const { cart } = useContext(CartContext)
   const cartIsEmpty = cart.items.length === 0
+
   return (
     <>
       <PageLayout>
@@ -22,8 +23,12 @@ const CartPage: NextPage = () => {
             <Cart items={cart.items} variant="advanced" />
             <div className={s.cartFooter}>
               <div className={s.cartFooterLink}>
-                <IconWithTextCta icon="coupon" text="Enter a coupon" />
-                <IconWithTextCta icon="note" text="Add a note" />
+                <div className={s.cartFooterItem}>
+                  <CartCoupon />
+                </div>
+                <div className={s.cartFooterItem}>
+                  <CartNote />
+                </div>
               </div>
             </div>
           </div>

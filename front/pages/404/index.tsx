@@ -12,15 +12,7 @@ const FourOhFour: NextPage = () => {
       </Head>
       <PageLayout>
         <h1 className={s.error}>
-          🙃 Sorry, I was too lazy to make the page you're looking for <br />
-          Feel free to remind me to work more{' '}
-          <a
-            href="https://github.com/quentingrchr/simply/issues"
-            target="_blank"
-            rel="noreferrer"
-          >
-            here
-          </a>
+          🙃 Sorry, the page you're looking for does not exist<br />
         </h1>
       </PageLayout>
     </>

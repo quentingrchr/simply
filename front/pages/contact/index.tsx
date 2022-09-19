@@ -33,6 +33,7 @@ const Contact: NextPage = () => {
                   src: 'https://static.wixstatic.com/media/2a1a02_1a25f4833ebf4b258e8d3b550adfc447~mv2.jpg/v1/fill/w_1440,h_1260,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/2a1a02_1a25f4833ebf4b258e8d3b550adfc447~mv2.jpg',
                   alt: 'Alt text of the image',
                 }}
+                slidingLayers={['secondary-light', 'tertiary']}
               />
             </article>
             <article className={s.item}>

@@ -32,6 +32,7 @@ const About: NextPage = () => {
                 src: 'https://static.wixstatic.com/media/2a1a02_5d8e7854cc1b4c9d98be668a906c7bb1~mv2.jpg/v1/fill/w_1440,h_1186,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/2a1a02_5d8e7854cc1b4c9d98be668a906c7bb1~mv2.jpg',
                 alt: 'Image ',
               }}
+              slidingLayers={['primary-light', 'secondary']}
             />
           </article>
           <article className={s.item}>

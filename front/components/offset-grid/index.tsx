@@ -29,7 +29,7 @@ const data = [
     subtitle: 'Summer 2023',
     button: {
       text: 'Shop Now',
-      to: '/test',
+      to: '/shop',
     },
   },
   {
@@ -57,7 +57,7 @@ const data = [
       "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you.",
     button: {
       text: 'Read More',
-      to: '/test',
+      to: '/contact',
     },
   },
   {
@@ -87,7 +87,7 @@ const data = [
     },
     button: {
       text: 'Shop Sale',
-      to: '/test',
+      to: '/shop',
     },
   },
   {
