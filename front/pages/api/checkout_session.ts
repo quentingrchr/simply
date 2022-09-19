@@ -30,7 +30,7 @@ export default async function handler(
       console.log(session, 'session')
       res.json({ id: session.id })
       // res.redirect(303, session.url)
-    } catch (err) {
+    } catch (err: any) {
       res.status(err.statusCode || 500).json(err.message)
     }
   } else {
