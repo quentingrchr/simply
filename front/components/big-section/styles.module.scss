@@ -6,12 +6,14 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  // min-height: 70vh;
   width: 100%;
   max-width: 50vw;
   padding: 4rem;
   height: 100%;
   box-sizing: border-box;
+  @include respond-below(md) {
+    max-width: 100%;
+  }
   &.align-center {
     text-align: center;
     align-items: center;
@@ -78,6 +80,7 @@
 .wysiwyg {
   flex: 1;
   font-size: 5.6rem;
+
   line-height: normal;
   color: var(--color-text);
   margin-top: 4rem;
@@ -86,5 +89,11 @@
     font-size: 5.6rem;
     color: var(--color-text);
     text-decoration: none;
+  }
+  @include respond-below(md) {
+    font-size: 3rem;
+    a {
+      font-size: 3rem;
+    }
   }
 }

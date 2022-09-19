@@ -129,7 +129,7 @@ export default function Nav({ hasBg, route }: IProps) {
             <Icon type="cart" size="md" color={hasBg ? 'white' : 'black'} />
             <span className={s.cartQuantity}>{cart.items.length}</span>
           </div>
-          <div className={s.navItem}>
+          <div className={cn(s.navItem, s.navLogin)}>
             <Link href="/login">Log In</Link>
           </div>
         </div>

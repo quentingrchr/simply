@@ -6,6 +6,7 @@ import productToCartItem from './productToCartItem'
 import getBaseApiUrl from './getBaseApiUrl'
 import extractAttr from './extractAttr'
 import convertStrapiJeweleryToJewelry from './convertStrapiJeweleryToJewelry'
+import getStripe from './getStripe'
 
 export {
   isInternalURL,
@@ -16,4 +17,5 @@ export {
   getBaseApiUrl,
   extractAttr,
   convertStrapiJeweleryToJewelry,
+  getStripe
 }

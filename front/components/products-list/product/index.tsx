@@ -30,13 +30,11 @@ export type IProps = {
 
 export default function Product(props: IProps) {
   const { id, primaryImg, secondaryImg, title, price, currency } = props
-
-  console.log({props});
   return (
     <>
       <Link href={`/shop/${id}`}>
         <a className={s.productLinkWrapper}>
-          <div className={cn(s.product, {hasSecondaryImg: !!secondaryImg})}>
+          <div className={cn(s.product, {[s.hasSecondaryImage]: !!secondaryImg})}>
             <div className={s.imgsContainer}>
               <span className={cn(s.border, s.borderLeft)}></span>
               <span className={cn(s.border, s.borderRight)}></span>
@@ -48,12 +46,12 @@ export default function Product(props: IProps) {
                   alt={primaryImg.alt ? primaryImg.alt : 'alt text'}
                 />
               </div>
-              { !!secondaryImg && <div className={cn(s.imgContainer, s.imgContainerVerso)}>
+              { !!secondaryImg && (<div className={cn(s.imgContainer, s.imgContainerVerso)}>
                 <img
                   src={secondaryImg.src}
                   alt={secondaryImg.alt ? secondaryImg.alt : 'alt text'}
                 />
-              </div>}
+              </div>)}
             </div>
             <div className={s.info}>
               <h2 className={s.title}>{`${title}`}</h2>

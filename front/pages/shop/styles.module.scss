@@ -1,9 +1,14 @@
+@import '@styles/theme.scss';
+
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   margin-bottom: 10rem;
+  @include respond-below(md) {
+    margin-bottom: 0rem;
+  }
 }
 
 .headerContent {

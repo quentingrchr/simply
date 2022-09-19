@@ -34,9 +34,17 @@
   width: 70%;
   margin: auto;
   margin-top: 5rem;
+ 
   a {
     font-size: 5.6rem;
     text-decoration: none;
+  }
+  @include respond-below(md) {
+    width: 100%;
+    font-size: 2rem;
+    a{
+      font-size: 2rem;
+    }
   }
 }
 

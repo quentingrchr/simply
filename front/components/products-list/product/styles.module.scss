@@ -18,9 +18,8 @@
 .imgContainerRecto {
   position: relative;
   z-index: 3;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
   transform: scale(1);
-  transition: transform 0.3s ease;
 }
 
 .imgContainerVerso {
@@ -29,7 +28,7 @@
   left: 0;
   z-index: 2;
   transform: scale(1);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .info {
@@ -131,6 +130,7 @@
     &:hover {
       .imgContainerRecto {
         opacity: 0;
+
       }
       .imgContainerVerso {
         transform: scale(1.1);

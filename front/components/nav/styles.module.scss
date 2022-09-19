@@ -68,8 +68,13 @@
 .navRight {
   display: flex;
   flex-direction: row-reverse;
+  align-items: center;
   gap: 4rem;
   flex: 1;
+  @include respond-below(sm) {
+    gap: 2rem;
+
+  }
 }
 
 .navCenter {

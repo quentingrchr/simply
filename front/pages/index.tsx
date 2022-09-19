@@ -2,15 +2,24 @@ import { PageLayout, Hero, OffsetGrid } from '@components'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import {
+  getBaseApiUrl,
+  extractAttr,
+} from '@utils/index'
 
-const Home: NextPage = () => {
+interface IProps {
+  heroTitle?: string
+}
+const Home: NextPage<IProps> = ({
+  heroTitle
+}) => {
   return (
     <PageLayout hasHero>
       <Head>
-        <title>Simply - The best jewelry </title>
+        <title>Simply - The best jewelry</title>
       </Head>
       <Hero
-        title="We make something good"
+        title={heroTitle}
         img={{
           sources: {
             xl: './hero-large.webp',
@@ -25,5 +34,32 @@ const Home: NextPage = () => {
     </PageLayout>
   )
 }
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  try {
+    const homeHeroRes = await fetch(`${getBaseApiUrl()}/home-hero?populate=*`)
+    const homeHeroData = await homeHeroRes.json()
+    let heroTitle = null;
+    if (homeHeroData.data) {
+      heroTitle = extractAttr(homeHeroData)['Title'];
+    }
+
+    // Pass data to the page via props
+    return {
+      props: {
+        heroTitle
+      },
+    }
+  } catch (err) {
+    console.log(err)
+    return {
+      props: {
+        heroTitle: null
+      },
+    }
+  }
+}
+
 
 export default Home

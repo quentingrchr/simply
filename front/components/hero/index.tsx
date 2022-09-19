@@ -40,7 +40,7 @@ export default function Button({ img, title }: IProps) {
   return (
     <section className={s.heroContainer} style={cssVars}>
       <div className={s.textContainer}>
-        {title && (
+        {!!title && (
           <h3
             className={s.title}
             dangerouslySetInnerHTML={{ __html: splitIntoSpan(title) }}

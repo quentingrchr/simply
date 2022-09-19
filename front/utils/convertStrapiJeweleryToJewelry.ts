@@ -7,7 +7,6 @@ export default function convertStrapiJeweleryToJewelry(
   const product = apiItem.attributes
   const id = apiItem.id
   const optionnalFields = {} as any
-  console.log(extractAttr(product.primaryImg).url)
   if(product?.secondaryImg?.data) {
     optionnalFields.secondaryImg = {
       src: `${

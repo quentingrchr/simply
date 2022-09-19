@@ -44,7 +44,6 @@ export default function cartReducer(
 
     case REMOVE_ITEM:
       const { id } = action.payload as { id: string }
-      console.log(id)
       return {
         ...state,
         items: state.items.filter((cartItem: ICartItem) => cartItem.id !== id),

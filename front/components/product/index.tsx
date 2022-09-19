@@ -4,9 +4,14 @@ import { useForm, FormProvider } from 'react-hook-form'
 import cn from 'classnames'
 import { IJewelryProduct, IProduct } from '@interfaces/index'
 import { JewelryColorType } from '@types'
-import { getPriceFromCurrency, productToCartItem } from '@utils/index'
+import {
+  getPriceFromCurrency,
+  productToCartItem,
+  getStripe,
+} from '@utils/index'
 import { CartContext } from '@context/cart'
 import { ADD_ITEM } from '@context/cart/action'
+import axios from 'axios'
 import {
   Button,
   ExpansionPanel,
@@ -20,6 +25,7 @@ const PANELS = []
 
 export type IProps = {
   product: IJewelryProduct
+  returnPolicy?: string
 }
 
 type ColorsTextMapKeys = JewelryColorType
@@ -31,7 +37,7 @@ const colorsTextMap: {
   silver: 'Silver',
 }
 
-export default function Product({ product }: IProps) {
+export default function Product({ product, returnPolicy }: IProps) {
   const { dispatch } = useContext(CartContext)
   const methods = useForm({
     defaultValues: {
@@ -46,6 +52,35 @@ export default function Product({ product }: IProps) {
     images.push(product.secondaryImg)
   }
 
+  async function buy(e: any) {
+    e.preventDefault()
+    // Create a Checkout Session.
+    const checkoutSession = await axios.post(
+      '/api/checkout_session'
+      // { amount: input.customDonation },
+    )
+
+    if ((checkoutSession as any).statusCode === 500) {
+      console.error((checkoutSession as any).message)
+      return
+    }
+
+    console.log({ checkoutSession: checkoutSession.data })
+
+    // Redirect to Checkout.
+    const stripe = await getStripe()
+    const { error } = await stripe!.redirectToCheckout({
+      // Make the id field from the Checkout Session creation API response
+      // available to this file, so you can provide it as parameter here
+      // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+      sessionId: checkoutSession.data.id,
+    })
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `error.message`.
+    console.warn(error.message)
+  }
+
   return (
     <FormProvider {...methods}>
       <div className={s.container}>
@@ -53,8 +88,10 @@ export default function Product({ product }: IProps) {
           <Slider images={images} />
         </section>
         <section className={s.right}>
-          <div className={s.id}>SKU: 0019</div>
-          <h1 className={s.title}>I'm a product</h1>
+          <div className={s.id}>
+            SKU: {product.id.toString().padStart(4, '0')}
+          </div>
+          <h1 className={s.title}>{product.title}</h1>
           <div className={s.price}>
             {getPriceFromCurrency(product.price, product.currency)}
           </div>
@@ -82,11 +119,7 @@ export default function Product({ product }: IProps) {
                   // todo dipsatch add to cart the following return
                   const quantity = watch('quantity') as number
                   const color = watch('color') as JewelryColorType
-                  console.log({
-                    product,
-                    quantity,
-                    color,
-                  })
+
                   dispatch({
                     type: ADD_ITEM,
                     payload: {
@@ -100,15 +133,8 @@ export default function Product({ product }: IProps) {
               </Button>
               <Button
                 variant="primaryLight"
-                onClick={() => {
-                  console.log('Buy now the following product', {
-                    id: product.id,
-                    // img: IBasicImage @todo 1 or 2 images ?
-                    title: product.title,
-                    price: product.price,
-                    currency: product.currency,
-                    ...watch(),
-                  })
+                onClick={(e: any) => {
+                  buy(e)
                 }}
                 fullWidth
               >
@@ -123,27 +149,17 @@ export default function Product({ product }: IProps) {
               titleVariant="caudex"
               borderPosition="bottom"
             >
-              <p className={s.description}>
-                I'm a product detail. I'm a great place to add more information
-                about your product such as sizing, material, care and cleaning
-                instructions. This is also a great space to write what makes
-                this product special and how your customers can benefit from
-                this item.
-              </p>
+              <p className={s.description}>{product.details}</p>
             </ExpansionPanel>
-            <ExpansionPanel
-              title="Return & Refund Policy"
-              titleVariant="caudex"
-              borderPosition="bottom"
-            >
-              <p className={s.description}>
-                I’m a Return and Refund policy. I’m a great place to let your
-                customers know what to do in case they are dissatisfied with
-                their purchase. Having a straightforward refund or exchange
-                policy is a great way to build trust and reassure your customers
-                that they can buy with confidence.
-              </p>
-            </ExpansionPanel>
+            {!!returnPolicy && (
+              <ExpansionPanel
+                title="Return & Refund Policy"
+                titleVariant="caudex"
+                borderPosition="bottom"
+              >
+                <p className={s.description}>{returnPolicy}</p>
+              </ExpansionPanel>
+            )}
             <ExpansionPanel
               title="Shipping Info"
               titleVariant="caudex"

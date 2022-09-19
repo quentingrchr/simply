@@ -1,6 +1,10 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
+import { useSetRecoilState } from 'recoil'
+
+// Recoil
+import { activeModalState, PRODUCT_LIST_FILTERS } from '@recoil/modal/atom'
 
 // Interfaces
 import { IJewelryProduct } from '@interfaces/index'
@@ -20,14 +24,15 @@ import {
 
 // Components
 import Product from './product'
-import { InputColor, InputRange } from '@components/inputs'
-import { ExpansionPanel } from '@components'
+import { ProductFilters, ProductListFiltersModal, Button } from '@components'
 
 export type IProps = {
   products: Array<IJewelryProduct>
 }
 
 export default function ProductsList({ products }: IProps) {
+  const setActiveModal = useSetRecoilState(activeModalState)
+
   const [activeFilter, dispatch] = useReducer(
     filterReducer,
     {
@@ -69,37 +74,38 @@ export default function ProductsList({ products }: IProps) {
   })
 
   const isEmptyList = filterProducts(products, activeFilter).length <= 0
-  const hasAnActiveFilter =
-    !!activeFilter.collection || !!activeFilter.price || !!activeFilter.color
 
   return (
     <div>
       <div className={s.main}>
         <div className={s.filtersContainer}>
-          <div className={s.filters}>
-            <p className={s.filtersTitle}>Filter by</p>
-            <ExpansionPanel title="Collections" items={collectionsItems} />
-            <ExpansionPanel title="Price">
-              {prices !== undefined && (
-                <InputRange
-                  minimumValue={prices.min}
-                  maximumValue={prices.max}
-                />
-              )}
-            </ExpansionPanel>
-            <ExpansionPanel title="Colors" items={colorsItems} />
-            <div className={s.clearAll}>
-              {hasAnActiveFilter && (
-                <button
-                  onClick={() => {
-                    dispatch({ type: CLEAR_ALL })
-                  }}
-                  className={s.clearAllBtn}
-                >
-                  Clear filters X
-                </button>
-              )}
-            </div>
+          <div className={s.productFiltersDesktop}>
+            <ProductFilters
+              activeFilter={activeFilter}
+              collectionsItems={collectionsItems}
+              colorsItems={colorsItems}
+              prices={prices}
+              dispatch={dispatch}
+            />
+          </div>  
+          <div className={s.productFiltersMobile}>
+            <ProductListFiltersModal
+              activeFilter={activeFilter}
+              collectionsItems={collectionsItems}
+              colorsItems={colorsItems}
+              prices={prices}
+              dispatch={dispatch}
+            />
+            <Button
+              onClick={() => {
+                setActiveModal(PRODUCT_LIST_FILTERS)
+              }}
+              type='button'
+              variant='transparent'
+              fullWidth
+            >
+              Filters
+            </Button>
           </div>
         </div>
         <div className={cn(s.list, { [s.grid]: !isEmptyList })}>

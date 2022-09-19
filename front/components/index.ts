@@ -24,6 +24,8 @@ import Product from './product'
 import Slider from './slider'
 import PageHead from './page-head'
 import SubscribeForm from './subscribe-form'
+import ProductFilters from './products-list/product-filters'
+import ProductListFiltersModal from './modal/product-list-filters-modal'
 
 export {
   Button,
@@ -55,4 +57,6 @@ export {
   PageHead,
   SubscribeForm,
   ParallaxImage,
+  ProductFilters, 
+  ProductListFiltersModal
 }

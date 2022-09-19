@@ -18,6 +18,7 @@ export type IProps = {
     | 'white'
   customSize?: number | string
   position?: 'inline' | 'center'
+  onClick?: () => void
 }
 
 const sizeMap: {
@@ -37,10 +38,12 @@ export default function Icon({
   customSize,
   color,
   position = 'inline',
+  onClick,
 }: IProps) {
   const computedSize = customSize !== undefined ? customSize : sizeMap[size]
+  const onClickHandler = onClick ? onClick : () => {}
   return (
-    <span className={cn(s[color], s.iconContainer, s[position])}>
+    <span className={cn(s[color], s.iconContainer, s[position])} onClick={onClickHandler}>
       <IcomoonReact
         iconSet={iconSet}
         icon={type}
