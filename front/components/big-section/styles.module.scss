@@ -26,6 +26,19 @@
     text-align: left;
     align-items: flex-start;
   }
+
+  .subtitle,
+  .title,
+  .wysiwyg {
+    @include text-off-viewport;
+  }
+  &.visible {
+    .subtitle,
+    .title,
+    .wysiwyg {
+      @include text-in-viewport;
+    }
+  }
 }
 
 .primary {

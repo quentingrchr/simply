@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import cn from 'classnames'
 import Link from 'next/link'
+import { useInView } from 'framer-motion'
 
 import { Button } from '@components'
 import s from './styles.module.scss'
@@ -35,12 +36,20 @@ export default function SmallSection({
   variant = 'primary',
   className = '',
 }: IProps) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, {
+    once: true,
+    margin: '-50%',
+  })
+
   const buttonProps =
     button && button?.onClick
       ? { onClick: button?.onClick }
       : { to: button?.to, target: button?.target ? button?.target : '_blank' }
   return (
-    <div className={cn(s.smallSection, s[variant], className)}>
+    <div ref={ref} className={cn(s.smallSection, s[variant], className, {
+      [s.visible]: isInView,
+    })}>
       {subtitle && <span className={s.subtitle}>{subtitle}</span>}
       {title && <h2 className={s.title}>{title}</h2>}
       {description && (

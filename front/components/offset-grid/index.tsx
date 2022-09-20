@@ -117,7 +117,7 @@ export default function OffsetGrid({}: IProps) {
           case 'simple_image':
             return (
               <section className={s.item} key={block.id}>
-                <SimpleImage key={block.id} img={block.img as IBasicImage} />
+                <SimpleImage key={block.id} img={block.img as IBasicImage} slidingLayers={['secondary','secondary-light']} />
               </section>
             )
 

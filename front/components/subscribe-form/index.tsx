@@ -28,7 +28,7 @@ export default function SubscribeForm(props: IProps) {
         </h2>
         <form action="" className={s.form}>
           <FormProvider {...methods}>
-            <InputText id="email" type="email" />
+            <InputText id="email" type="email" required />
             <Button
               variant="transparent"
               fullWidth

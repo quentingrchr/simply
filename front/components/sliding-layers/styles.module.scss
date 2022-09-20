@@ -1,21 +1,26 @@
-@import "@styles/theme.scss";
+@import '@styles/theme.scss';
 
-@keyframes layer-sliding{
+@keyframes layer-sliding {
   0% {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
   100% {
-    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); 
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
   }
 }
 
 .heroLayer1 {
   z-index: 3;
-  animation: layer-sliding 1.2s forwards ease;
+  // animation: layer-sliding 1.2s forwards ease;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: 1.2s ease clip-path;
+  &.visible {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  }
 }
 
-.heroLayer{
+.heroLayer {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,35 +28,40 @@
   height: 100%;
 }
 
-.heroLayer2{
+.heroLayer2 {
   z-index: 2;
-  animation: layer-sliding .8s .8s forwards ease;
+  // animation: layer-sliding .8s .8s forwards ease;``
+  transition: 0.8s 0.8s ease clip-path;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  &.visible {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  }
 }
 
-.primary-light{
+.primary-light {
   background-color: $color-primary-light;
 }
 
-.primary-dark{
+.primary-dark {
   background-color: $color-primary-dark;
 }
 
-.secondary{
+.secondary {
   background-color: $color-secondary;
 }
 
-.secondary-light{
+.secondary-light {
   background-color: $color-secondary-light;
 }
 
-.tertiary{
+.tertiary {
   background-color: $color-tertiary;
 }
 
-.black{
+.black {
   background-color: $color-black;
 }
 
-.white{
+.white {
   background-color: $color-white;
 }

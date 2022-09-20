@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import cn from 'classnames'
-import Link from 'next/link'
 
 import s from './styles.module.scss'
-import { IBasicImage } from '@interfaces/index'
+import { useInView } from 'framer-motion'
 
 interface ISubSection {
   title?: string
@@ -27,9 +26,23 @@ export default function BigSection({
   className = '',
   align = 'left',
 }: IProps) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, {
+    once: true,
+    margin: '-50%',
+  })
   return (
     <div
-      className={cn(s.bigSection, s[variant], s[`align-${align}`], className)}
+      className={cn(
+        s.bigSection,
+        s[variant],
+        s[`align-${align}`],
+        {
+          [s.visible]: isInView,
+        },
+        className
+      )}
+      ref={ref}
     >
       {subSections?.map(({ title, wysiwyg }, index) => {
         return (

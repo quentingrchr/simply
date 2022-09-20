@@ -30,6 +30,9 @@
   display: flex;
   justify-content: space-between;
   margin: 2rem auto;
+  @include respond-above(md){
+    align-items: flex-start;
+  }
   .navList {
     @include respond-below(sm) {
       display: none;

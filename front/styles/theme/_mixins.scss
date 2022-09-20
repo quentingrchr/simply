@@ -43,15 +43,15 @@
     color: $color-secondary;
   }
 
-  .secondary-light{
+  .secondary-light {
     color: $color-secondary-light;
   }
 
   .tertiary {
     color: $color-tertiary;
   }
-  
-  .error{
+
+  .error {
     color: $color-error;
   }
 }
@@ -125,4 +125,17 @@
   &:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px var(--background-color, #fff) inset !important;
   }
+}
+
+@mixin text-in-viewport() {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+@mixin text-off-viewport() {
+  opacity: 0;
+  transform: translateY(50%);
+  filter: blur(10px);
+  transition: all 0.8s ease;
 }
