@@ -59,7 +59,6 @@ export default function ProductFilters({
             formatLabel={value => `$${value}`}
           />
           </div>
-          // <InputRange handleChange={handlePriceChange} minimumValue={prices.min} maximumValue={prices.max} />
         )}
       </ExpansionPanel>
       <ExpansionPanel title="Colors" items={colorsItems} />

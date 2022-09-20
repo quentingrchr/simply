@@ -4,14 +4,14 @@ import cn from 'classnames'
 import { getPriceFromCurrency } from '@utils/index'
 import { useForm } from 'react-hook-form'
 interface IRange {
-  min: number | undefined
-  max: number | undefined
+  min: number
+  max: number
 }
 
 export type IProps = {
   handleChange: (range: IRange) => void
-  minimumValue: number | undefined
-  maximumValue: number | undefined
+  minimumValue: number
+  maximumValue: number
   step?: number
   defaultValue?: IRange
 }
@@ -22,7 +22,9 @@ export default function InputRange({
   minimumValue,
   maximumValue,
   handleChange,
-  step = !!maximumValue && !!minimumValue ? (maximumValue - minimumValue) / 4 : 1,
+  step = !!maximumValue && !!minimumValue
+    ? (maximumValue - minimumValue) / 4
+    : 1,
   defaultValue = {
     min: minimumValue,
     max: maximumValue,
