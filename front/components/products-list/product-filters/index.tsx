@@ -1,8 +1,10 @@
 import React from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
-import { ExpansionPanel, InputRange } from '@components'
-import { SActiveFilters, CLEAR_ALL } from '../filterReducer'
+import { ExpansionPanel } from '@components'
+import { SActiveFilters, CLEAR_ALL, FILTER_PRICE } from '../filterReducer'
+import InputRange from 'react-input-range'
+import 'react-input-range/lib/css/index.css'
 
 export type IProps = {
   activeFilter: SActiveFilters
@@ -23,6 +25,13 @@ export default function ProductFilters({
 }: IProps) {
   const hasAnActiveFilter =
     !!activeFilter.collection || !!activeFilter.price || !!activeFilter.color
+
+  function handlePriceChange(range: { min: number; max: number }) {
+    dispatch({
+      type: FILTER_PRICE,
+      payload: range,
+    })
+  }
   return (
     <div className={s.filters}>
       <div
@@ -36,7 +45,21 @@ export default function ProductFilters({
       <ExpansionPanel title="Collections" items={collectionsItems} />
       <ExpansionPanel title="Price">
         {prices !== undefined && (
-          <InputRange minimumValue={prices.min} maximumValue={prices.max} />
+          <div className={s.priceInputContainer}>
+          <InputRange
+            minValue={prices.min}
+            maxValue={prices.max}
+            value={activeFilter.price ? activeFilter.price : prices}
+            onChange={(value) =>{
+              dispatch({
+                type: FILTER_PRICE,
+                payload: value,
+              })
+            }}
+            formatLabel={value => `$${value}`}
+          />
+          </div>
+          // <InputRange handleChange={handlePriceChange} minimumValue={prices.min} maximumValue={prices.max} />
         )}
       </ExpansionPanel>
       <ExpansionPanel title="Colors" items={colorsItems} />

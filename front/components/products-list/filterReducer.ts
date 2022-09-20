@@ -50,7 +50,7 @@ export function filterReducer(
       if (action.payload === 'NONE') {
         return { ...state, price: undefined }
       } else {
-        return { ...state, price: action.payload }
+        return { ...state, price: action.payload as { min: number; max: number } }
       }
     case 'CLEAR_ALL':
       return {

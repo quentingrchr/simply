@@ -92,7 +92,7 @@ export function filterProducts(
   if (filters.price !== undefined) {
     newProducts = newProducts.filter((product) => {
       if (filters.price == undefined) return true
-      product.price >= filters.price.min && product.price <= filters.price.max
+      return product.price >= filters.price.min && product.price <= filters.price.max
     })
   }
 

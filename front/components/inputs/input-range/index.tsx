@@ -2,14 +2,16 @@ import React, { useState, useRef, useEffect } from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
 import { getPriceFromCurrency } from '@utils/index'
+import { useForm } from 'react-hook-form'
 interface IRange {
-  min: number
-  max: number
+  min: number | undefined
+  max: number | undefined
 }
 
 export type IProps = {
-  minimumValue?: number
-  maximumValue?: number
+  handleChange: (range: IRange) => void
+  minimumValue: number | undefined
+  maximumValue: number | undefined
   step?: number
   defaultValue?: IRange
 }
@@ -17,14 +19,19 @@ export type IProps = {
 type SliderType = 'min' | 'max'
 
 export default function InputRange({
-  minimumValue = 0,
-  maximumValue = 900,
-  step = (maximumValue - minimumValue) / 4,
+  minimumValue,
+  maximumValue,
+  handleChange,
+  step = !!maximumValue && !!minimumValue ? (maximumValue - minimumValue) / 4 : 1,
   defaultValue = {
     min: minimumValue,
     max: maximumValue,
   },
 }: IProps) {
+  console.log({
+    minimumValue,
+    maximumValue,
+  })
   const [range, setRange] = useState<IRange>(defaultValue)
   const barRef = useRef<any>(null)
   const [isDragged, setIsDragged] = useState<SliderType | null>(null)
@@ -76,6 +83,12 @@ export default function InputRange({
       window.removeEventListener('mouseup', onMouseUp)
     }
   }, [range, isDragged])
+
+  useEffect(() => {
+    console.log(range.min == minimumValue && range.max == maximumValue)
+    if (range.min == minimumValue && range.max == maximumValue) return
+    handleChange(range)
+  }, [range])
 
   const percentages = {
     min: (range.min / maximumValue) * 100,

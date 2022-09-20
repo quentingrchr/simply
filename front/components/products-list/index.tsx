@@ -43,7 +43,7 @@ export default function ProductsList({ products }: IProps) {
     undefined
   )
 
-  // Populate avalaible collections
+  // Populate avalaible collections, colors and prices
   let { collections, colors, prices } = getArrayOfPropertiesFromProduct(
     products,
     {
