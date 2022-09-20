@@ -5,6 +5,7 @@
 .cart {
   height: 100vh;
   width: 100vw;
+  max-width: 100%;
   background-color: $color-white;
   transition: transform var(--animation-duration) ease-in-out;
   transform: translateX(100%);

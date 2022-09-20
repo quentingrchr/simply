@@ -34,7 +34,7 @@
   display: flex;
   justify-content: stretch;
   @include respond-below(sm) {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

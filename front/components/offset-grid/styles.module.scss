@@ -2,7 +2,7 @@
 
 .grid {
   display: grid;
-  width: 100vw;
+  width: 100%;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   --offset: 20vh;
@@ -21,7 +21,7 @@
   height: 100vh;
   background-color: $color-primary-light;
   @include respond-below(sm) {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

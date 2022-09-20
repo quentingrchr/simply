@@ -19,7 +19,7 @@
 }
 
 .grid {
-  width: 100vw;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 0.2fr 0.7fr 0.35fr 0.7fr 1fr;
@@ -34,11 +34,10 @@
 }
 
 .item {
- 
   display: flex;
   justify-content: stretch;
   @include respond-below(md) {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

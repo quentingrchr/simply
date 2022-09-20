@@ -9,7 +9,7 @@
   max-width: 50vw;
   height: fit-content;
   @include respond-below(sm) {
-    max-width: 100vw;
+    max-width: 100%;
     width: 100vw;
     height: fit-content;
     padding: 5rem 0;
