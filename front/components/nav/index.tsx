@@ -84,6 +84,10 @@ export default function Nav({ hasBg, route }: IProps) {
     burgerIsOpen ? closeBurger() : openBurger()
   }
 
+  const getCartCount = () => {
+    return cart.items.reduce((acc, item) => acc + item.quantity, 0)
+  }
+
   return (
     <nav ref={navRef} className={cn(s.nav, { [s.noBg]: !hasBg })}>
       {/* Burger menu */}
@@ -134,7 +138,7 @@ export default function Nav({ hasBg, route }: IProps) {
         <div className={s.navRight}>
           <div className={s.navItem} onClick={openCartModal}>
             <Icon type="cart" size="md" color={hasBg ? 'white' : 'black'} />
-            <span className={s.cartQuantity}>{cart.items.length}</span>
+            <span className={s.cartQuantity}>{getCartCount()}</span>
           </div>
           <div className={cn(s.navItem, s.desktopOnly)}>
             <Link href="/login">Log In</Link>

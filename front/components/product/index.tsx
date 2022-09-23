@@ -65,8 +65,6 @@ export default function Product({ product, returnPolicy }: IProps) {
       return
     }
 
-    console.log({ checkoutSession: checkoutSession.data })
-
     // Redirect to Checkout.
     const stripe = await getStripe()
     const { error } = await stripe!.redirectToCheckout({

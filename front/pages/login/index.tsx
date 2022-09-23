@@ -30,10 +30,6 @@ const Login: NextPage = () => {
     reset()
   }
 
-  useEffect(() => {
-    console.log(errors)
-  }, [errors])
-
   return (
     <>
       {/* <Head></Head> */}

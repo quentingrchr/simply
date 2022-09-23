@@ -12,6 +12,7 @@ function jeweleryToCartItem(
       src: product.primaryImg.src,
       alt: product.primaryImg.alt || 'Alternative text',
     },
+    id_stripe: product.strapiProductId,
     title: product.title,
     quantity,
     price: product.price,

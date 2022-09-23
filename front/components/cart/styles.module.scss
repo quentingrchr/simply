@@ -10,6 +10,12 @@
   flex-direction: column;
   max-height: var(--max-height-cart);
   overflow-y: scroll;
+  &.simple{
+
+  }
+  &.advanced{
+    overflow: unset;
+  }
 }
 
 .item {

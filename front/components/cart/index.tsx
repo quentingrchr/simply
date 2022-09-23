@@ -44,7 +44,7 @@ export default function Cart({ variant = 'simple', items = data }: IProps) {
       {isEmpty ? (
         <EmptyCard variant={variant} />
       ) : (
-        <div className={s.list}>
+        <div className={cn(s.list, s[variant])}>
           {items.map((p) => (
             <div className={s.item} key={p.id}>
               <Item

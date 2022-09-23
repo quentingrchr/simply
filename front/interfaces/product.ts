@@ -14,5 +14,5 @@ export default interface IProduct {
   createdAt?: string
   updatedAt?: string
   publishedAt?: string
-  strapiProductId?: string
+  strapiProductId: string
 }

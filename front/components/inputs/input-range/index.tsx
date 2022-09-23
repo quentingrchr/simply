@@ -30,10 +30,7 @@ export default function InputRange({
     max: maximumValue,
   },
 }: IProps) {
-  console.log({
-    minimumValue,
-    maximumValue,
-  })
+ 
   const [range, setRange] = useState<IRange>(defaultValue)
   const barRef = useRef<any>(null)
   const [isDragged, setIsDragged] = useState<SliderType | null>(null)

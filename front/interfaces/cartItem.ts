@@ -10,4 +10,5 @@ export default interface ICartItem {
   currency: CurrencyType
   color: string
   collection: string
+  id_stripe: string
 }

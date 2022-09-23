@@ -1,5 +1,6 @@
 import '@styles/reset.scss'
 import '@styles/base.scss'
+import '@styles/react-input-range.scss'
 import { useEffect, useState, useRef } from 'react'
 import { RecoilRoot } from 'recoil'
 import { CartContextProvider } from '../context/cart'

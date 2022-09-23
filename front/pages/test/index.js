@@ -27,7 +27,7 @@ export default function PreviewPage() {
       return;
     }
     axios.post('/api/checkout_session', {
-      productId: 'price_1LYYfwDuOAL277SL0GgZn4pz',
+      productId: 'price_1LbllBDuOAL277SLSHHxGal6',
     })
     
   }
@@ -35,7 +35,7 @@ export default function PreviewPage() {
   return (
     <form onSubmit={handleSubmit}>
       <section>
-        <input type="text" value="price_1LYYfwDuOAL277SL0GgZn4pz" id="product" />
+        <input type="text" value="price_1LbllBDuOAL277SLSHHxGal6" id="product" />
         <button type="submit" role="link">
           Checkout
         </button>

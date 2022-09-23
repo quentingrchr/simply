@@ -2,34 +2,39 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 type Data = any
 
-console.log(process.env.STRIPE_SECRET_KEY, 'clg')
+
+
+interface IProduct {
+  id_stripe: string
+  name?: string
+  quantity: number
+}
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  console.log(req, 'req.body')
-  console.log(req.headers.origin, 'req.headers.origin')
   if (req.method === 'POST') {
     // get input 'product' from the form
-    const { productId } = req.body
+    const { products } = req.body as { products: IProduct[] }
+    // console.log(products, 'products');
     try {
       // Create Checkout Sessions from body params.
+      const line_items = products.map((product: IProduct) => {
+        return {
+          price: product.id_stripe,
+          quantity: product.quantity,
+        }
+
+      })
       const session = await stripe.checkout.sessions.create({
-        line_items: [
-          {
-            // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-            price: 'price_1LbS6XDuOAL277SLDIP1jQfL',
-            quantity: 1,
-          },
-        ],
+        line_items,
         mode: 'payment',
         success_url: `${req.headers.origin}/?success=true`,
         cancel_url: `${req.headers.origin}/?canceled=true`,
       })
-      console.log(session, 'session')
-      res.json({ id: session.id })
-      // res.redirect(303, session.url)
+      res.send({ sessionId: session.id, url: session.url })
+
     } catch (err: any) {
       res.status(err.statusCode || 500).json(err.message)
     }

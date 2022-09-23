@@ -26,6 +26,26 @@
   }
 }
 
+.clearAll{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.clearAllBtn{
+  border: 1px solid $color-black;
+  outline: none;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transform: translateY(0);
+  transition: all 0.1s ease;
+  &:hover, &:focus{
+    transform: translateY(-2px);
+
+  }
+}
+
 .priceInputContainer{
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -35,5 +55,4 @@
   align-items: center;
   box-sizing: border-box;
   width: 100%;
-
 }

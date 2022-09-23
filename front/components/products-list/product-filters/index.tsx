@@ -26,12 +26,6 @@ export default function ProductFilters({
   const hasAnActiveFilter =
     !!activeFilter.collection || !!activeFilter.price || !!activeFilter.color
 
-  function handlePriceChange(range: { min: number; max: number }) {
-    dispatch({
-      type: FILTER_PRICE,
-      payload: range,
-    })
-  }
   return (
     <div className={s.filters}>
       <div
@@ -70,7 +64,7 @@ export default function ProductFilters({
             }}
             className={s.clearAllBtn}
           >
-            Clear filters X
+            Clear filters
           </button>
         )}
       </div>

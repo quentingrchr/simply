@@ -21,6 +21,7 @@ import {
   FILTER_PRICE,
   filterReducer,
 } from './filterReducer'
+import { capitalizeFirstLetter } from '@utils/index'
 
 // Components
 import Product from './product'
@@ -56,6 +57,7 @@ export default function ProductsList({ products }: IProps) {
   // Format collectionsItems
   const collectionsItems: any = collections.map((collection) => {
     return {
+      id: collection,
       content: collection,
       onClick: (collectionFilter: string) =>
         dispatch({ type: FILTER_COLLECTION, payload: collectionFilter }),
@@ -66,7 +68,8 @@ export default function ProductsList({ products }: IProps) {
   // Format colorsItems
   const colorsItems: any = colors.map((color) => {
     return {
-      content: color,
+      id: color,
+      content: capitalizeFirstLetter(color),
       onClick: (colorFilter: string) =>
         dispatch({ type: FILTER_COLOR, payload: colorFilter }),
       active: activeFilter.color === color,
@@ -87,7 +90,7 @@ export default function ProductsList({ products }: IProps) {
               prices={prices}
               dispatch={dispatch}
             />
-          </div>  
+          </div>
           <div className={s.productFiltersMobile}>
             <ProductListFiltersModal
               activeFilter={activeFilter}
@@ -100,8 +103,8 @@ export default function ProductsList({ products }: IProps) {
               onClick={() => {
                 setActiveModal(PRODUCT_LIST_FILTERS)
               }}
-              type='button'
-              variant='transparent'
+              type="button"
+              variant="transparent"
               fullWidth
             >
               Filters
@@ -117,7 +120,7 @@ export default function ProductsList({ products }: IProps) {
             ))
           ) : (
             <div className={s.isEmptyList}>
-              <p>
+              <p className={s.isEmptyText}>
                 No items matched your search criteria. Try widening your search.
               </p>
             </div>

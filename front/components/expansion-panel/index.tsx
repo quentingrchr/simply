@@ -20,6 +20,7 @@ export type IProps = {
   borderPosition?: 'top' | 'bottom'
   items?: [
     {
+      id: string
       content: string
       onClick?: () => void
     }
@@ -91,7 +92,7 @@ export default function ExpansionPanel({
                     className={cn(s.item, { [s.active]: item.active })}
                     key={index}
                     onClick={() =>
-                      filter(item.onClick, item.active ? 'NONE' : item.content)
+                      filter(item.onClick, item.active ? 'NONE' : item.id)
                     }
                   >
                     {item.content}
