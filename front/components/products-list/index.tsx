@@ -69,7 +69,7 @@ export default function ProductsList({ products }: IProps) {
   const colorsItems: any = colors.map((color) => {
     return {
       id: color,
-      content: capitalizeFirstLetter(color),
+      content: capitalizeFirstLetter(color as string),
       onClick: (colorFilter: string) =>
         dispatch({ type: FILTER_COLOR, payload: colorFilter }),
       active: activeFilter.color === color,

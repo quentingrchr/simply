@@ -25,8 +25,6 @@ import { ICartItem } from '@interfaces/index'
 
 export type IProps = {}
 
-const CartItems = cart.data as ICartItem[]
-
 export default function CartModal(props: IProps) {
   const activeModal = useRecoilValue(activeModalState)
   const setActiveModal = useSetRecoilState(activeModalState)

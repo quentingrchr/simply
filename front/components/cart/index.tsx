@@ -57,6 +57,7 @@ export default function Cart({ variant = 'simple', items = data }: IProps) {
                 variant={variant}
                 collection={p.collection}
                 color={p.color}
+                id_stripe={p.id_stripe}
               />
             </div>
           ))}
