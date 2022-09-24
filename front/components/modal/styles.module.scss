@@ -48,4 +48,7 @@
   height: fit-content;
   width: fit-content;
   z-index: 502;
+  @include respond-below(sm) {
+    width: 100%;
+  }
 }

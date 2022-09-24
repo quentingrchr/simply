@@ -27,17 +27,16 @@ const stripePromise = loadStripe(
 const CartPage: NextPage = () => {
   const { cart } = useContext(CartContext)
   const cartIsEmpty = cart.items.length === 0
-  
 
   async function handleCheckout(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
     if (!stripePromise) return
-    if(cartIsEmpty) return
+    if (cartIsEmpty) return
     try {
       const res = await axios.post('/api/checkout_session', {
         products: cart.items,
       })
-      const { sessionId, url} = res.data
+      const { sessionId, url } = res.data
       /* redirect to checkout */
       const stripe = await stripePromise
       const { error } = await stripe!.redirectToCheckout({
@@ -60,16 +59,18 @@ const CartPage: NextPage = () => {
               <div className={s.headerTitle}>My cart</div>
             </div>
             <Cart items={cart.items} variant="advanced" />
-           { !cartIsEmpty && (<div className={s.cartFooter}>
-              <div className={s.cartFooterLink}>
-                <div className={s.cartFooterItem}>
-                  <CartCoupon />
-                </div>
-                <div className={s.cartFooterItem}>
-                  <CartNote />
+            {!cartIsEmpty && (
+              <div className={s.cartFooter}>
+                <div className={s.cartFooterLink}>
+                  <div className={s.cartFooterItem}>
+                    <CartCoupon />
+                  </div>
+                  <div className={s.cartFooterItem}>
+                    <CartNote />
+                  </div>
                 </div>
               </div>
-            </div>)}
+            )}
           </div>
           {!cartIsEmpty && (
             <div className={s.orderContainer}>
