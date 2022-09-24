@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useController, useFormContext } from 'react-hook-form'
 import s from './styles.module.scss'
 import cn from 'classnames'
@@ -48,6 +48,16 @@ export default function InputNumber({
       if (onDecrease) onDecrease()
     }
   }
+
+  function handleSetValue(value: number) {
+    if (value >= min && value <= max) {
+      onChange(value)
+      console.log(value);
+    }
+  }
+  useEffect(() => {
+    console.log({value})
+  }, [value])
 
   if (variant === 'small') {
     return (

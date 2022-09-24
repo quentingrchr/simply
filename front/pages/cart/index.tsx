@@ -60,7 +60,7 @@ const CartPage: NextPage = () => {
               <div className={s.headerTitle}>My cart</div>
             </div>
             <Cart items={cart.items} variant="advanced" />
-            <div className={s.cartFooter}>
+           { !cartIsEmpty && (<div className={s.cartFooter}>
               <div className={s.cartFooterLink}>
                 <div className={s.cartFooterItem}>
                   <CartCoupon />
@@ -69,7 +69,7 @@ const CartPage: NextPage = () => {
                   <CartNote />
                 </div>
               </div>
-            </div>
+            </div>)}
           </div>
           {!cartIsEmpty && (
             <div className={s.orderContainer}>

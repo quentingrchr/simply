@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import s from './styles.module.scss'
 import cn from 'classnames'
 import { useFormContext } from 'react-hook-form'
+import Link from 'next/link'
 
 // Context
 import { CartContext } from '@context/cart'
@@ -38,7 +39,7 @@ export default function Item({
   variant,
 }: IProps) {
   const { dispatch } = useContext(CartContext)
-  const { watch } = useFormContext()
+  const { watch, setValue } = useFormContext()
   const isAdvanced = variant === 'advanced'
   const handleDelete = (id: string) => {
     dispatch({ type: REMOVE_ITEM, payload: { id } })
@@ -52,6 +53,10 @@ export default function Item({
     dispatch({ type: DECREMENT_ITEM, payload: { id, value: 1 } })
   }
 
+  useEffect(() => {
+    setValue(`${id}-quantity`, quantity, { shouldValidate: true })
+  }, [quantity])
+
   return (
     // @todo add link to /product/${id}
     <div className={cn(s.cartItem, s[variant])}>
@@ -59,7 +64,11 @@ export default function Item({
         <div className={s.leftDelete} onClick={() => handleDelete(id)}>
           <Icon color="black" type="cross" size="xxs" />
         </div>
-        <img className={s.img} src={img.src} alt={img.alt || ''} />
+        <Link href={`shop/${id}`}>
+          <a className={s.imgContainer}>
+            <img className={s.img} src={img.src} alt={img.alt || ''} />
+          </a>
+        </Link>
         <div className={s.infos}>
           <p className={s.title}>{title}</p>
           <div className={s.secondaryInfos}>

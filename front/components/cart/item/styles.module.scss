@@ -36,9 +36,15 @@
   opacity: 0;
 }
 
-.img {
+.imgContainer{
   width: auto;
   height: 8rem;
+  cursor: pointer;
+}
+
+.img {
+  width: auto;
+  height: 100%;
 }
 
 .infos {
