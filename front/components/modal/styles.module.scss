@@ -13,6 +13,10 @@
   opacity: 0;
   pointer-events: none;
   display: flex;
+  @include respond-below(md) {
+    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
+  }
 
   &.fade {
     transition: var(--animation-duration) opacity ease-in-out;

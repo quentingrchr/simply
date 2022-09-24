@@ -42,6 +42,8 @@ export default function Modal({
   useEffect(() => {
     if (activeModal === id) {
       setScrollDisabled(true)
+    } else {
+      setScrollDisabled(false)
     }
   }, [activeModal])
 
