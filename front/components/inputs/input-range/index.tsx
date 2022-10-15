@@ -30,7 +30,6 @@ export default function InputRange({
     max: maximumValue,
   },
 }: IProps) {
- 
   const [range, setRange] = useState<IRange>(defaultValue)
   const barRef = useRef<any>(null)
   const [isDragged, setIsDragged] = useState<SliderType | null>(null)
@@ -84,7 +83,6 @@ export default function InputRange({
   }, [range, isDragged])
 
   useEffect(() => {
-    console.log(range.min == minimumValue && range.max == maximumValue)
     if (range.min == minimumValue && range.max == maximumValue) return
     handleChange(range)
   }, [range])

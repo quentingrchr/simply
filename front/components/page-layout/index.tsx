@@ -16,6 +16,11 @@ export default function PageLayout({ hasHero = false, children }: IProps) {
   const headerHeight = useRecoilValue(headerHeightState)
   const scrollDisabled = useRecoilValue(scrollDisabledState)
   const { route } = useRouter()
+  useEffect(() => {
+    console.log(
+      'This website is used for educational purposes only. You can find the source code here https://github.com/quentingrchr/simply'
+    )
+  }, [])
 
   const cssVars = { '--nav-height': `${headerHeight}px` } as React.CSSProperties
 

@@ -2,8 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 type Data = any
 
-
-
 interface IProduct {
   id_stripe: string
   name?: string
@@ -15,9 +13,9 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === 'POST') {
-    // get input 'product' from the form
+    // get input 'products' from the form
     const { products } = req.body as { products: IProduct[] }
-    // console.log(products, 'products');
+
     try {
       // Create Checkout Sessions from body params.
       const line_items = products.map((product: IProduct) => {
@@ -25,7 +23,6 @@ export default async function handler(
           price: product.id_stripe,
           quantity: product.quantity,
         }
-
       })
       const session = await stripe.checkout.sessions.create({
         line_items,
@@ -34,7 +31,6 @@ export default async function handler(
         cancel_url: `${req.headers.origin}/?canceled=true`,
       })
       res.send({ sessionId: session.id, url: session.url })
-
     } catch (err: any) {
       res.status(err.statusCode || 500).json(err.message)
     }

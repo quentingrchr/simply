@@ -52,12 +52,8 @@ export default function InputNumber({
   function handleSetValue(value: number) {
     if (value >= min && value <= max) {
       onChange(value)
-      console.log(value);
     }
   }
-  useEffect(() => {
-    console.log({value})
-  }, [value])
 
   if (variant === 'small') {
     return (

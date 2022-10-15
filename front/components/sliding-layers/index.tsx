@@ -18,9 +18,6 @@ export default function SlidingLayers({
     once: true,
   })
 
-  useEffect(() => {
-    console.log(isInView)
-  }, [isInView])
   return (
     <>
       <div ref={ref} className={s.container}>

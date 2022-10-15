@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
 import s from './styles.module.scss'
+import axios from 'axios'
+
 import { useForm, FormProvider } from 'react-hook-form'
 import cn from 'classnames'
 import { IJewelryProduct, IProduct } from '@interfaces/index'
 import { JewelryColorType } from '@types'
+import { loadStripe } from '@stripe/stripe-js'
 import {
   getPriceFromCurrency,
   productToCartItem,
@@ -11,7 +14,6 @@ import {
 } from '@utils/index'
 import { CartContext } from '@context/cart'
 import { ADD_ITEM } from '@context/cart/action'
-import axios from 'axios'
 import {
   Button,
   ExpansionPanel,
@@ -21,7 +23,9 @@ import {
   ExpansionPanelGroup,
 } from '@components'
 
-const PANELS = []
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+)
 
 export type IProps = {
   product: IJewelryProduct
@@ -47,36 +51,36 @@ export default function Product({ product, returnPolicy }: IProps) {
   })
   const { watch, register, handleSubmit } = methods
 
+  async function handleBuyNow(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    if (!stripePromise) return
+    try {
+      const res = await axios.post('/api/checkout_session', {
+        products: [
+          {
+            id_stripe: product.strapiProductId,
+            name: product,
+            quantity: 1,
+          },
+        ],
+      })
+      const { sessionId, url } = res.data
+      /* redirect to checkout */
+      const stripe = await stripePromise
+      const { error } = await stripe!.redirectToCheckout({
+        sessionId,
+      })
+      if (error) {
+        console.log(error, 'error')
+      }
+    } catch (err) {
+      console.log(err, 'err')
+    }
+  }
+
   let images = [product.primaryImg]
   if (product.secondaryImg) {
     images.push(product.secondaryImg)
-  }
-
-  async function buy(e: any) {
-    e.preventDefault()
-    // Create a Checkout Session.
-    const checkoutSession = await axios.post(
-      '/api/checkout_session'
-      // { amount: input.customDonation },
-    )
-
-    if ((checkoutSession as any).statusCode === 500) {
-      console.error((checkoutSession as any).message)
-      return
-    }
-
-    // Redirect to Checkout.
-    const stripe = await getStripe()
-    const { error } = await stripe!.redirectToCheckout({
-      // Make the id field from the Checkout Session creation API response
-      // available to this file, so you can provide it as parameter here
-      // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-      sessionId: checkoutSession.data.id,
-    })
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `error.message`.
-    console.warn(error.message)
   }
 
   return (
@@ -132,7 +136,7 @@ export default function Product({ product, returnPolicy }: IProps) {
               <Button
                 variant="primaryLight"
                 onClick={(e: any) => {
-                  buy(e)
+                  handleBuyNow(e)
                 }}
                 fullWidth
               >
