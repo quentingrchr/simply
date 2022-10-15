@@ -24,6 +24,10 @@
   grid-template-rows: 0.05fr 0.5fr 0.35fr 0.35fr 0.5fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  @include respond-below(md) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .item {
@@ -36,6 +40,7 @@
   @include respond-below(sm) {
     width: 100%;
     display: flex;
+    max-width: 100%;
     justify-content: center;
     align-items: center;
     height: 90vh;

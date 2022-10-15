@@ -9,6 +9,10 @@
   min-height: 100vh;
   max-width: 50vw;
   height: 100%;
+  box-sizing: border-box;
+  @include respond-below(sm) {
+    max-width: 100%;
+  }
   .subtitle,
   .title,
   .descriptionContainer,
@@ -29,6 +33,10 @@
 
 .primary {
   background-color: $color-primary-dark;
+
+  @include respond-below(sm) {
+    padding: 6rem;
+  }
 }
 
 .primaryLight {
