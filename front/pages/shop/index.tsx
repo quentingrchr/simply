@@ -43,9 +43,9 @@ const Shop: NextPage<IProps> = ({ products, topText, pageMeta }) => {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // Fetch data from external API
-  let products = null;
+  let products = null
   try {
     const jewelriesRes = await fetch(`${getBaseApiUrl()}/jewelries?populate=*`)
     const jewelriesData = await jewelriesRes.json()

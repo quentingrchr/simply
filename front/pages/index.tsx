@@ -2,17 +2,12 @@ import { PageLayout, Hero, OffsetGrid } from '@components'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import {
-  getBaseApiUrl,
-  extractAttr,
-} from '@utils/index'
+import { getBaseApiUrl, extractAttr } from '@utils/index'
 
 interface IProps {
   heroTitle?: string
 }
-const Home: NextPage<IProps> = ({
-  heroTitle
-}) => {
+const Home: NextPage<IProps> = ({ heroTitle }) => {
   return (
     <PageLayout hasHero>
       <Head>
@@ -35,30 +30,29 @@ const Home: NextPage<IProps> = ({
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // Fetch data from external API
   try {
     const homeHeroRes = await fetch(`${getBaseApiUrl()}/home-hero?populate=*`)
     const homeHeroData = await homeHeroRes.json()
-    let heroTitle = null;
+    let heroTitle = null
     if (homeHeroData.data) {
-      heroTitle = extractAttr(homeHeroData)['Title'];
+      heroTitle = extractAttr(homeHeroData)['Title']
     }
 
     // Pass data to the page via props
     return {
       props: {
-        heroTitle
+        heroTitle,
       },
     }
   } catch (err) {
     return {
       props: {
-        heroTitle: null
+        heroTitle: null,
       },
     }
   }
 }
-
 
 export default Home

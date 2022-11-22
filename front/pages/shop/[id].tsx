@@ -4,9 +4,12 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import s from './styles.module.scss'
 import { ProductsList, PageLayout, Text, Product } from '@components'
-import { getBaseApiUrl, convertStrapiJeweleryToJewelry, extractAttr} from '@utils/index'
+import {
+  getBaseApiUrl,
+  convertStrapiJeweleryToJewelry,
+  extractAttr,
+} from '@utils/index'
 import { IJewelryProduct, IProduct } from '@interfaces/index'
-
 
 interface IProps {
   product: IJewelryProduct
@@ -25,7 +28,19 @@ const ShopOneProduct: NextPage<IProps> = ({ product, returnPolicy }) => {
   )
 }
 
-export async function getServerSideProps({ params }: any) {
+export async function getStaticPaths() {
+  const res = await fetch(`${getBaseApiUrl()}/jewelries?populate=*`)
+  const products = await res.json()
+
+  console.log({ products })
+  const paths = products.data.map((product: IJewelryProduct) => ({
+    params: { id: product.id.toString() },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }: any) {
   console.warn(params.id, 'ID')
   const productRes = await fetch(
     `${getBaseApiUrl()}/jewelries/${params.id}?populate=*`
@@ -36,18 +51,18 @@ export async function getServerSideProps({ params }: any) {
   )
 
   let returnPolicy = null
-  
+
   const productData = await productRes.json()
   const returnPolicyData = await returnPolicyRes.json()
   const product = convertStrapiJeweleryToJewelry(productData.data)
-  if(!!returnPolicyData.data) {
+  if (!!returnPolicyData.data) {
     returnPolicy = extractAttr(returnPolicyData).returnPolicy
   }
 
   return {
     props: {
       product,
-      returnPolicy
+      returnPolicy,
     },
   }
 }
